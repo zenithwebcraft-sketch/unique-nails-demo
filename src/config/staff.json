@@ -5,7 +5,7 @@
       "name": "Dayana Pestana",
       "role": "Fundadora & Especialista en Cejas",
       "bio": "Con más de 10 años de experiencia en el mundo de la belleza, Dayana lidera nuestro equipo con pasión y dedicación.",
-      "image": "/placeholder.svg",
+      "image": "images/vanity/0_Dayana1.jpg",
       "active": true
     },
     {
@@ -13,7 +13,7 @@
       "name": "Isis Casique",
       "role": "Especialista en Pestañas",
       "bio": "Artista certificada en extensiones y lifting de pestañas. Transforma miradas con precisión y delicadeza.",
-      "image": "/placeholder.svg",
+      "image": "images/vanity/0_Isis1.jpg",
       "active": true
     },
     {
@@ -21,7 +21,7 @@
       "name": "Leumin Boyer",
       "role": "Nail Artist",
       "bio": "Creativa y detallista, Leumin convierte cada uña en una obra de arte. Experta en tendencias internacionales.",
-      "image": "/placeholder.svg",
+      "image": "images/vanity/0_Leumin2.jpg",
       "active": true
     },
     {
@@ -29,7 +29,7 @@
       "name": "Yersin Catherine Briceño",
       "role": "Especialista en Tratamientos Faciales",
       "bio": "Profesional dedicada al cuidado de la piel con formación avanzada en estética facial y corporal.",
-      "image": "/placeholder.svg",
+      "image": "images/vanity/Yersin-Briceno.jpg",
       "active": true
     }
   ]
