@@ -92,7 +92,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Crear evento en Google Calendar
     const event = await calendar.events.insert({
       auth,
-      calendarId: process.env.GOOGLE_CALENDAR_POOL_ID,
+      calendarId: process.env.GOOGLE_CALENDAR_POOL_ID?.trim(),
       requestBody: {
         summary: `${serviceTitle} – ${firstName} ${lastName}`,
         description: `📧 Email: ${email}\n📱 Tel: ${phone}\n\n🎯 Servicio: ${serviceTitle}\n💰 Cliente: ${firstName} ${lastName}`,

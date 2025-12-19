@@ -62,11 +62,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       requestBody: {
         timeMin,
         timeMax,
-        items: [{ id: process.env.GOOGLE_CALENDAR_POOL_ID }],
+        items: [{ id: process.env.GOOGLE_CALENDAR_POOL_ID?.trim() }],
       },
     });
 
-    const busySlots = freeBusyResponse.data.calendars?.[process.env.GOOGLE_CALENDAR_POOL_ID!]?.busy || [];
+    const busySlots = freeBusyResponse.data.calendars?.[process.env.GOOGLE_CALENDAR_POOL_ID?.trim()!]?.busy || [];
 
     console.log('✅ Busy slots found:', busySlots.length);
 
