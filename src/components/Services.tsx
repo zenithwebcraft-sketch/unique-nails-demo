@@ -41,15 +41,27 @@ export const Services = () => {
                 index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               } gap-8 lg:gap-16 items-center`}
             >
-              {/* Image placeholder */}
+              {/* Image placeholder - REEMPLAZA DESDE AQUÍ */}
               <div className="w-full lg:w-1/2">
-                <div className="relative aspect-[4/3] bg-gradient-to-br from-secondary to-muted rounded-2xl overflow-hidden group">
-                  <div className="absolute inset-0 flex items-center justify-center text-primary/30 group-hover:text-primary/50 transition-colors">
-                    {iconMap[service.icon]}
-                  </div>
-                  <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors" />
+                <div className="relative aspect-[4/3] bg-muted rounded-2xl overflow-hidden group shadow-lg">
+                  {/* Lógica: Si hay imagen, muéstrala. Si no, muestra el icono de respaldo */}
+                  {service.image ? (
+                    <img
+                      src={service.image}
+                      alt={service.imageAlt || service.title}
+                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-secondary to-muted text-primary/30">
+                      {iconMap[service.icon]}
+                    </div>
+                  )}
+                  
+                  {/* Capa de brillo al pasar el mouse (opcional) */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                 </div>
               </div>
+              {/* HASTA AQUÍ */}
 
               {/* Content */}
               <div className="w-full lg:w-1/2 space-y-6">
