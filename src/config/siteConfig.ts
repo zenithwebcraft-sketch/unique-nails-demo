@@ -41,7 +41,7 @@ export const services = [
     description: "Técnica ancestral para una depilación precisa y duradera. Ideal para cejas y rostro, respetando la piel sensible.",
     benefits: ["Sin químicos ni irritación", "Resultados duraderos hasta 4 semanas", "Definición perfecta de cejas"],
     icon: "Sparkles",
-    image: "/images/vanyti/depilacion-con-hilo.jpg",
+    image: "/images/vanity/depilacion-con-hilo.jpg",
     imageAlt: "Depilación con hilo en Vanyti Center Beauty"
 
   },
@@ -51,7 +51,7 @@ export const services = [
     description: "Realza tu mirada con nuestros tratamientos de pestañas. Desde lifting hasta extensiones de alta calidad.",
     benefits: ["Mirada más expresiva y natural", "Materiales hipoalergénicos", "Duración de 4-6 semanas"],
     icon: "Eye",
-    image: "/images/vanyti/Tratamiento-de-pestanas.jpg",
+    image: "/images/vanity/Tratamiento-de-pestanas.jpg",
     imageAlt: "Tratamiento de Pestañas en Vanyti Center Beauty"
   },
   {
@@ -60,7 +60,7 @@ export const services = [
     description: "Diseño, laminado y microblading para unas cejas perfectamente definidas que enmarquen tu rostro.",
     benefits: ["Diseño personalizado", "Resultados naturales", "Técnicas de última generación"],
     icon: "Brush",
-    image: "/images/vanyti/Tratamiento-de-cejas.jpg",
+    image: "/images/vanity/Tratamiento-de-cejas.jpg",
     imageAlt: "Tratamiento de Cejas en Vanyti Center Beauty"
   },
   {
@@ -69,7 +69,7 @@ export const services = [
     description: "Cuidado completo de manos y uñas. Desde manicura clásica hasta nail art y semipermanente.",
     benefits: ["Uñas fuertes y saludables", "Colores de tendencia", "Larga duración sin astillado"],
     icon: "Hand",
-    image: "/images/vanyti/Manicura.jpg",
+    image: "/images/vanity/Manicura.jpg",
     imageAlt: "Manicura en Vanyti Center Beauty"
   },
   {
@@ -78,7 +78,7 @@ export const services = [
     description: "Tratamiento integral para pies cansados. Incluye hidratación, exfoliación y esmaltado perfecto.",
     benefits: ["Pies suaves y renovados", "Tratamiento de callosidades", "Relajación completa"],
     icon: "Footprints",
-    image: "/images/vanyti/Pedicura.jpg",
+    image: "/images/vanity/Pedicura.jpg",
     imageAlt: "Pedicura en Vanyti Center Beauty"
   },
   {
@@ -87,7 +87,7 @@ export const services = [
     description: "Limpieza profunda, hidratación y rejuvenecimiento para una piel radiante y saludable.",
     benefits: ["Piel más luminosa", "Hidratación profunda", "Anti-edad efectivo"],
     icon: "Flower2",
-    image: "/images/vanyti/Tratamientos-faciales-corporales.jpg",
+    image: "/images/vanity/Tratamientos-faciales-corporales.jpg",
     imageAlt: "Tratamiento Faciales Corporales en Vanyti Center Beauty"
   },
   {
@@ -96,7 +96,7 @@ export const services = [
     description: "Tecnología avanzada para eliminación permanente del vello. Resultados visibles desde la primera sesión.",
     benefits: ["Resultados permanentes", "Sin dolor", "Apto para todo tipo de piel"],
     icon: "Zap",
-    image: "/images/vanyti/Depilacion-laser.jpg",
+    image: "/images/vanity/Depilacion-laser.jpg",
     imageAlt: "Depilacion Laser en Vanyti Center Beauty"
   },
   {
@@ -105,7 +105,7 @@ export const services = [
     description: "Masajes, envolturas y tratamientos reductores para un cuerpo tonificado y relajado.",
     benefits: ["Reducción de medidas", "Relajación muscular", "Piel más firme"],
     icon: "Heart",
-    image: "/images/vanyti/Tratamientos-faciales-corporales.jpg",
+    image: "/images/vanity/Tratamientos-faciales-corporales.jpg",
     imageAlt: "Tratamiento Corporales en Vanyti Center Beauty"
   },
 ];
@@ -160,25 +160,25 @@ export const team = [
     name: "Dayana Pestana",
     role: "Fundadora & Especialista en Cejas",
     bio: "Con más de 10 años de experiencia en el mundo de la belleza, Dayana lidera nuestro equipo con pasión y dedicación.",
-    image: "/images/vanyti/0_Dayana1.jpg",
+    image: "/images/vanity/0_Dayana1.jpg",
   },
   {
     name: "Isis Casique",
     role: "Especialista en Pestañas",
     bio: "Artista certificada en extensiones y lifting de pestañas. Transforma miradas con precisión y delicadeza.",
-    image: "/images/vanyti/0_Isis1.jpg",
+    image: "/images/vanity/0_Isis1.jpg",
   },
   {
     name: "Leumin Boyer",
     role: "Nail Artist",
     bio: "Creativa y detallista, Leumin convierte cada uña en una obra de arte. Experta en tendencias internacionales.",
-    image: "/images/vanyti/0_Leumin2.jpg",
+    image: "/images/vanity/0_Leumin2.jpg",
   },
   {
     name: "Yersin Catherine Briceño",
     role: "Especialista en Tratamientos Faciales",
     bio: "Profesional dedicada al cuidado de la piel con formación avanzada en estética facial y corporal.",
-    image: "/images/vanyti/Yersin-Briceno.jpg",
+    image: "/images/vanity/Yersin-Briceno.jpg",
   },
 ];
 
