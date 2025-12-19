@@ -25,10 +25,17 @@ export const Team = () => {
               key={member.name} 
               className="group overflow-hidden border-border hover:border-primary/30 transition-colors"
             >
-              {/* Photo placeholder */}
+              {/* Photo section con Imagen Real */}
               <div className="aspect-[3/4] bg-gradient-to-br from-secondary to-muted relative overflow-hidden">
-                <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors" />
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-card to-transparent" />
+                <img 
+                  src={member.image} 
+                  alt={member.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                
+                {/* Capas de estilo (brillo y degradado inferior) */}
+                <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-card to-transparent pointer-events-none" />
               </div>
               
               <CardContent className="p-6 -mt-16 relative">
