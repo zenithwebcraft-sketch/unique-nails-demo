@@ -89,7 +89,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: 'Vanyti Center Beauty <no-reply@zenithwebcraft.com>',
+      from: 'Vanyti Center Beauty <onboarding@resend.dev>',
       to: [email],
       subject: `✨ Cita Confirmada - ${serviceTitle} | ${bookingId}`,
       html: emailHtml,
