@@ -92,7 +92,7 @@ export const pricingPlans = [
   {
     name: currentLang === 'es' ? 'Plan Básico' : 'Basic Plan',
     description: currentLang === 'es' ? 'Ideal para comenzar' : 'Ideal to get started',
-    price: "49€",
+    price: "$49",
     period: currentLang === 'es' ? '/mes' : '/month',
     features: currentLang === 'es' ? [
       "Servicio mensual incluido",
@@ -110,7 +110,7 @@ export const pricingPlans = [
   {
     name: currentLang === 'es' ? 'Plan Premium' : 'Premium Plan',
     description: currentLang === 'es' ? 'Nuestro plan más popular' : 'Our most popular plan',
-    price: "89€",
+    price: "$89",
     period: currentLang === 'es' ? '/mes' : '/month',
     features: currentLang === 'es' ? [
       "2 Servicios mensuales incluidos",
@@ -130,7 +130,7 @@ export const pricingPlans = [
   {
     name: currentLang === 'es' ? 'Plan VIP' : 'VIP Plan',
     description: currentLang === 'es' ? 'Experiencia completa y premium' : 'Complete premium experience',
-    price: "149€",
+    price: "$149",
     period: currentLang === 'es' ? '/mes' : '/month',
     features: currentLang === 'es' ? [
       "Servicios ilimitados",
