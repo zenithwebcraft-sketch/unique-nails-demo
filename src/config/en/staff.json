@@ -1,0 +1,34 @@
+[
+  {
+    "id": "profesional-1",
+    "name": "Professional Name 1",
+    "role": "Founder & Senior Specialist",
+    "bio": "With over 10 years of experience in the industry. Leads the team with professionalism, passion and dedication to clients.",
+    "image": "images/placeholder/staff-placeholder.svg",
+    "active": true
+  },
+  {
+    "id": "profesional-2",
+    "name": "Professional Name 2",
+    "role": "Certified Specialist",
+    "bio": "Certified specialist with international training. Expert in advanced techniques and personalized attention.",
+    "image": "images/placeholder/staff-placeholder.svg",
+    "active": true
+  },
+  {
+    "id": "profesional-3",
+    "name": "Professional Name 3",
+    "role": "Specialized Technician",
+    "bio": "Young professional with great talent and dedication. Specialized in the latest trends and techniques in the sector.",
+    "image": "images/placeholder/staff-placeholder.svg",
+    "active": true
+  },
+  {
+    "id": "profesional-4",
+    "name": "Professional Name 4",
+    "role": "Services Consultant",
+    "bio": "Expert in personalized consulting. Helps each client find the perfect treatment for their needs.",
+    "image": "images/placeholder/staff-placeholder.svg",
+    "active": true
+  }
+]

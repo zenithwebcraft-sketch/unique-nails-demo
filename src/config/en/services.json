@@ -1,0 +1,98 @@
+[
+  {
+    "id": "servicio-premium-1",
+    "categoryId": "premium",
+    "title": "Premium Plus Service",
+    "description": "Detailed description of the premium service. Explains what it consists of, what techniques are used, and what results the client can expect.",
+    "benefits": [
+      "Main service benefit",
+      "Lasting and visible results",
+      "Personalized attention included"
+    ],
+    "icon": "Sparkles",
+    "durationMin": 90,
+    "priceEUR": 99,
+    "image": "images/placeholder/service-placeholder.svg",
+    "imageAlt": "Premium Plus Service - Your Business Here"
+  },
+  {
+    "id": "servicio-estandar-1",
+    "categoryId": "standard",
+    "title": "Standard Service",
+    "description": "Quality service at an accessible price. Ideal for clients seeking excellent results without compromising their budget.",
+    "benefits": [
+      "Excellent quality-price ratio",
+      "Certified professionals",
+      "Guaranteed results"
+    ],
+    "icon": "Star",
+    "durationMin": 60,
+    "priceEUR": 59,
+    "image": "images/placeholder/service-placeholder.svg",
+    "imageAlt": "Standard Service - Your Business Here"
+  },
+  {
+    "id": "servicio-express",
+    "categoryId": "express",
+    "title": "Express Service",
+    "description": "Fast service without sacrificing quality. Perfect for busy people who need immediate results.",
+    "benefits": [
+      "Fast and effective",
+      "Walk-in available",
+      "Immediate results"
+    ],
+    "icon": "Zap",
+    "durationMin": 30,
+    "priceEUR": 35,
+    "image": "images/placeholder/service-placeholder.svg",
+    "imageAlt": "Express Service - Your Business Here"
+  },
+  {
+    "id": "paquete-completo",
+    "categoryId": "packages",
+    "title": "Complete Package",
+    "description": "Combination of services with special discount. Comprehensive treatment for optimal results and guaranteed savings.",
+    "benefits": [
+      "Up to 20% discount",
+      "Complete treatment included",
+      "Personalized follow-up"
+    ],
+    "icon": "Gift",
+    "durationMin": 120,
+    "priceEUR": 149,
+    "image": "images/placeholder/service-placeholder.svg",
+    "imageAlt": "Complete Package - Your Business Here"
+  },
+  {
+    "id": "consulta-inicial",
+    "categoryId": "consultation",
+    "title": "Free Initial Consultation",
+    "description": "First consultation without commitment. We assess your needs and design a personalized plan tailored to you.",
+    "benefits": [
+      "100% free",
+      "Complete professional assessment",
+      "Personalized plan included"
+    ],
+    "icon": "MessageCircle",
+    "durationMin": 20,
+    "priceEUR": 0,
+    "image": "images/placeholder/service-placeholder.svg",
+    "imageAlt": "Initial Consultation - Your Business Here"
+  },
+  {
+    "id": "mantenimiento-mensual",
+    "categoryId": "maintenance",
+    "title": "Monthly Maintenance",
+    "description": "Periodic maintenance service for regular clients. Maintain your results with monthly scheduled sessions.",
+    "benefits": [
+      "Special price for recurring clients",
+      "Priority scheduling",
+      "Loyalty points accumulation"
+    ],
+    "icon": "RefreshCw",
+    "durationMin": 45,
+    "priceEUR": 45,
+    "image": "images/placeholder/service-placeholder.svg",
+    "imageAlt": "Monthly Maintenance - Your Business Here"
+  }
+]
