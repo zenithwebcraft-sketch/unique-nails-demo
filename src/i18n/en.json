@@ -59,5 +59,13 @@
     "next": "Next",
     "back": "Back",
     "confirm": "Confirm Booking"
+  },
+    "navigation": {
+    "services": "Services",
+    "pricing": "Pricing",
+    "team": "Team",
+    "testimonials": "Testimonials",
+    "location": "Location",
+    "bookNow": "Book Now"
   }
 }

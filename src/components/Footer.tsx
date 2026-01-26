@@ -7,6 +7,14 @@ export const Footer = () => {
   const { business } = businessData;
   const { translations: t } = useLanguage();
   
+  const navigationItems = [
+    { label: t.navigation.services, href: "#servicios" },
+    { label: t.navigation.pricing, href: "#precios" },
+    { label: t.navigation.team, href: "#equipo" },
+    { label: t.navigation.testimonials, href: "#opiniones" },
+    { label: t.navigation.location, href: "#ubicacion" },
+  ];
+  
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
@@ -27,7 +35,7 @@ export const Footer = () => {
           <div>
             <h3 className="font-display text-lg font-semibold mb-4">{t.footer.navigation}</h3>
             <ul className="space-y-3">
-              {business.navigation.map((item) => (
+              {navigationItems.map((item) => (
                 <li key={item.href}>
                   <a 
                     href={item.href}
