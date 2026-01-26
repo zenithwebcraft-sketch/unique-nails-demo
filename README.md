@@ -16,6 +16,8 @@ Plantilla profesional de landing page con sistema de citas integrado, multiidiom
 8. [Estructura del Proyecto](#-estructura-del-proyecto)
 9. [Deployment](#-deployment)
 10. [Troubleshooting](#-troubleshooting)
+11. [Sistema Multiidioma](#-sistema-multiidioma)
+
 
 ---
 
@@ -493,3 +495,126 @@ text
 □ Probar en dispositivos móviles
 □ Verificar SEO (meta tags, title)
 □ Entregar al cliente
+
+## 🌐 Sistema Multiidioma
+
+### Cómo funciona
+
+El sistema detecta automáticamente el idioma del navegador:
+- 🇪🇸 **Español**: Si el navegador está configurado en español
+- 🇬🇧 **Inglés**: Para cualquier otro idioma
+
+### Estructura de archivos
+
+```
+src/
+├── i18n/
+│   ├── es.json              # 🇪🇸 Traducciones de UI (español)
+│   └── en.json              # 🇬🇧 Traducciones de UI (inglés)
+└── config/
+    ├── business.json        # Datos del negocio (sin traducir)
+    ├── booking.json         # Configuración técnica (sin traducir)
+    ├── es/
+    │   ├── services.json    # 🇪🇸 Servicios en español
+    │   └── staff.json       # 🇪🇸 Staff en español
+    └── en/
+        ├── services.json    # 🇬🇧 Servicios en inglés
+        └── staff.json       # 🇬🇧 Staff en inglés
+```
+
+### Qué está traducido
+
+✅ **Textos de UI** (en `i18n/es.json` y `i18n/en.json`):
+- Hero (títulos, botones, stats)
+- Servicios (títulos de sección, botones)
+- Precios (títulos, períodos)
+- Equipo (títulos de sección)
+- Testimonios (títulos de sección)
+- Ubicación (títulos, botones)
+- Footer (navegación, contacto)
+- Navegación (menú del header)
+- Sistema de citas (labels, botones) - **EN DESARROLLO**
+
+✅ **Contenido dinámico** (en `config/es/` y `config/en/`):
+- Servicios (títulos, descripciones, beneficios)
+- Staff (nombres, roles, biografías)
+- Planes de precios (nombres, descripciones, features)
+- Testimonios (nombres, textos)
+
+❌ **NO traducido** (datos únicos):
+- Nombre del negocio (es el mismo en todos los idiomas)
+- Teléfono y email (son los mismos)
+- Dirección física (es la misma ubicación real)
+- Configuración técnica de booking
+
+### Agregar nuevos textos traducibles
+
+1. **Para textos de UI**, agrega en ambos archivos `i18n/`:
+
+   **`es.json`:**
+   ```json
+   {
+     "nuevaSeccion": {
+       "titulo": "Texto en español",
+       "subtitulo": "Descripción en español"
+     }
+   }
+   ```
+
+   **`en.json`:**
+   ```json
+   {
+     "nuevaSeccion": {
+       "titulo": "Text in English",
+       "subtitulo": "Description in English"
+     }
+   }
+   ```
+
+2. **Usa el hook en tu componente**:
+   ```tsx
+   import { useLanguage } from "@/hooks/useLanguage";
+
+   export const MiComponente = () => {
+     const { translations: t } = useLanguage();
+     
+     return (
+       <h1>{t.nuevaSeccion.titulo}</h1>
+     );
+   };
+   ```
+
+3. **Para contenido de servicios/staff**, edita los archivos JSON en ambas carpetas:
+   - `src/config/es/services.json`
+   - `src/config/en/services.json`
+
+### Personalización para clientes
+
+Al clonar la plantilla para un nuevo cliente:
+
+1. **Traduce servicios**: Edita `config/es/services.json` y `config/en/services.json`
+2. **Traduce staff**: Edita `config/es/staff.json` y `config/en/staff.json`
+3. **Mantén business.json único**: No necesita traducción (nombre, teléfono, dirección son los mismos)
+4. **Verifica traducciones de UI**: Revisa `i18n/es.json` y `i18n/en.json` por si necesitas ajustar algún texto genérico
+
+### Agregar más idiomas (avanzado)
+
+Para agregar francés, alemán, etc.:
+
+1. Crea archivos de traducción:
+   - `src/i18n/fr.json`, `src/i18n/de.json`
+   - `src/config/fr/services.json`, `src/config/fr/staff.json`
+
+2. Actualiza `src/hooks/useLanguage.ts`:
+   ```typescript
+   import fr from '@/i18n/fr.json';
+   import servicesDataFR from '@/config/fr/services.json';
+   
+   const detectedLang = browserLang.startsWith('es') ? 'es' 
+     : browserLang.startsWith('fr') ? 'fr'
+     : 'en';
+   ```
+
+3. Actualiza `src/config/siteConfig.ts` para importar y exportar los nuevos idiomas.
+
+---
