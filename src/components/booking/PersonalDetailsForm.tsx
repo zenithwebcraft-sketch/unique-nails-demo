@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { User, Phone } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface PersonalDetailsFormProps {
   onSubmit: (data: { phone: string; firstName: string; lastName: string }) => void;
@@ -13,11 +14,12 @@ interface PersonalDetailsFormProps {
   };
 }
 
-export const PersonalDetailsForm = ({ 
-  onSubmit, 
-  onBack, 
-  initialData = {} 
+export const PersonalDetailsForm = ({
+  onSubmit,
+  onBack,
+  initialData = {},
 }: PersonalDetailsFormProps) => {
+  const { translations } = useLanguage();
   const [phone, setPhone] = useState(initialData.phone || '');
   const [firstName, setFirstName] = useState(initialData.firstName || '');
   const [lastName, setLastName] = useState(initialData.lastName || '');
@@ -28,139 +30,126 @@ export const PersonalDetailsForm = ({
   }>({});
 
   const validatePhone = (phone: string): boolean => {
-    // Solo dígitos, al menos 9 caracteres
     const phoneRegex = /^\d{9,}$/;
     return phoneRegex.test(phone.replace(/\s/g, ''));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  const newErrors: typeof errors = {};
+    e.preventDefault();
 
-  if (!phone.trim()) {
-    newErrors.phone = 'El teléfono es obligatorio';
-  } else if (!validatePhone(phone)) {
-    newErrors.phone = 'Ingresa un teléfono válido (solo números, mín. 9 dígitos)';
-  }
+    const newErrors: typeof errors = {};
 
-  if (!firstName.trim()) {
-    newErrors.firstName = 'El nombre es obligatorio';
-  }
+    if (!phone.trim()) {
+      newErrors.phone = translations.booking.personalDetails.phoneRequired;
+    } else if (!validatePhone(phone)) {
+      newErrors.phone = translations.booking.personalDetails.phoneInvalid;
+    }
 
-  if (!lastName.trim()) {
-    newErrors.lastName = 'El apellido es obligatorio';
-  }
+    if (!firstName.trim()) {
+      newErrors.firstName = translations.booking.personalDetails.firstNameRequired;
+    }
 
-  if (Object.keys(newErrors).length > 0) {
-    setErrors(newErrors);
-    return;
-  }
+    if (!lastName.trim()) {
+      newErrors.lastName = translations.booking.personalDetails.lastNameRequired;
+    }
 
-  setErrors({});
-  onSubmit({
-    phone: phone.replace(/\s/g, ''),
-    firstName: firstName.trim(),
-    lastName: lastName.trim(),
-  });
-};
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    onSubmit({
+      phone: phone.replace(/\s/g, ''),
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+    });
+  };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-pink-100 rounded-full mb-4">
+    <div className="max-w-md mx-auto space-y-6">
+      <div className="text-center space-y-2">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-pink-100 mb-4">
           <User className="h-8 w-8 text-pink-600" />
         </div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">
-          Completa tus datos
+        <h2 className="text-3xl font-bold text-gray-900">
+          {translations.booking.personalDetails.title}
         </h2>
         <p className="text-gray-600">
-          Necesitamos esta información para confirmar tu cita
+          {translations.booking.personalDetails.subtitle}
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Teléfono móvil *
-          </label>
-          <div className="relative">
-            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <Input
-              type="tel"
-              placeholder="663 491 339"
-              value={phone}
-              onChange={(e) => {
-                setPhone(e.target.value);
-                setErrors({ ...errors, phone: undefined });
-              }}
-              className={`pl-10 py-6 ${errors.phone ? 'border-red-500' : ''}`}
-              autoFocus
-            />
-          </div>
-          {errors.phone && (
-            <p className="text-red-500 text-sm mt-2">{errors.phone}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Nombre *
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-2">
+          <label htmlFor="firstName" className="text-sm font-medium text-gray-700">
+            {translations.booking.personalDetails.firstNameLabel}
           </label>
           <Input
-            type="text"
-            placeholder="María"
+            id="firstName"
             value={firstName}
             onChange={(e) => {
               setFirstName(e.target.value);
-              setErrors({ ...errors, firstName: undefined });
+              setErrors((prev) => ({ ...prev, firstName: undefined }));
             }}
-            className={`py-6 ${errors.firstName ? 'border-red-500' : ''}`}
+            placeholder={translations.booking.personalDetails.firstNamePlaceholder}
+            className={errors.firstName ? 'border-red-500' : ''}
           />
           {errors.firstName && (
-            <p className="text-red-500 text-sm mt-2">{errors.firstName}</p>
+            <p className="text-sm text-red-600">{errors.firstName}</p>
           )}
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Apellido *
+        <div className="space-y-2">
+          <label htmlFor="lastName" className="text-sm font-medium text-gray-700">
+            {translations.booking.personalDetails.lastNameLabel}
           </label>
           <Input
-            type="text"
-            placeholder="García"
+            id="lastName"
             value={lastName}
             onChange={(e) => {
               setLastName(e.target.value);
-              setErrors({ ...errors, lastName: undefined });
+              setErrors((prev) => ({ ...prev, lastName: undefined }));
             }}
-            className={`py-6 ${errors.lastName ? 'border-red-500' : ''}`}
+            placeholder={translations.booking.personalDetails.lastNamePlaceholder}
+            className={errors.lastName ? 'border-red-500' : ''}
           />
           {errors.lastName && (
-            <p className="text-red-500 text-sm mt-2">{errors.lastName}</p>
+            <p className="text-sm text-red-600">{errors.lastName}</p>
           )}
         </div>
 
-        <div className="flex gap-4 pt-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onBack}
-            className="flex-1 py-6"
-          >
-            Volver
-          </Button>
-          <Button
-            type="submit"
-            className="flex-1 py-6"
-          >
-            Confirmar Cita
-          </Button>
+        <div className="space-y-2">
+          <label htmlFor="phone" className="text-sm font-medium text-gray-700">
+            {translations.booking.personalDetails.phoneLabel}
+          </label>
+          <div className="relative">
+            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
+              id="phone"
+              type="tel"
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+                setErrors((prev) => ({ ...prev, phone: undefined }));
+              }}
+              placeholder={translations.booking.personalDetails.phonePlaceholder}
+              className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
+            />
+          </div>
+          {errors.phone && (
+            <p className="text-sm text-red-600">{errors.phone}</p>
+          )}
         </div>
 
-        <p className="text-xs text-gray-500 text-center">
-          * Campos obligatorios
-        </p>
+        <div className="flex gap-3 pt-4">
+          <Button type="button" variant="outline" onClick={onBack} className="flex-1">
+            {translations.booking.back}
+          </Button>
+          <Button type="submit" className="flex-1">
+            {translations.booking.next}
+          </Button>
+        </div>
       </form>
     </div>
   );

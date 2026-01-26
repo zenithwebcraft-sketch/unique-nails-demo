@@ -48,6 +48,14 @@
     "locations": "Locations",
     "rights": "All rights reserved."
   },
+  "navigation": {
+    "services": "Services",
+    "pricing": "Pricing",
+    "team": "Team",
+    "testimonials": "Testimonials",
+    "location": "Location",
+    "bookNow": "Book Now"
+  },
   "booking": {
     "title": "Book Appointment",
     "selectService": "Select a Service",
@@ -58,14 +66,64 @@
     "price": "Price",
     "next": "Next",
     "back": "Back",
-    "confirm": "Confirm Booking"
-  },
-    "navigation": {
-    "services": "Services",
-    "pricing": "Pricing",
-    "team": "Team",
-    "testimonials": "Testimonials",
-    "location": "Location",
-    "bookNow": "Book Now"
+    "confirm": "Confirm Booking",
+    "minutes": "minutes",
+    "emailCapture": {
+      "title": "Start Your Booking",
+      "subtitle": "We'll send your appointment confirmation here",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@email.com",
+      "continueButton": "Continue",
+      "emailRequired": "Please enter your email",
+      "emailInvalid": "Please enter a valid email"
+    },
+    "serviceSelection": {
+      "title": "Select Your Service",
+      "subtitle": "Choose the treatment you'd like to book",
+      "selected": "✓ Selected",
+      "select": "Select"
+    },
+    "dateTime": {
+      "title": "Choose Date & Time",
+      "subtitle": "Select your preferred day and time",
+      "selectDate": "Select a Date",
+      "availableSlots": "Available Times",
+      "noDateSelected": "Select a date to see available times",
+      "loading": "Loading availability...",
+      "error": "Error loading availability. Please try again.",
+      "retry": "Retry"
+    },
+    "personalDetails": {
+      "title": "Your Personal Details",
+      "subtitle": "We need this information to confirm your appointment",
+      "firstNameLabel": "First Name",
+      "firstNamePlaceholder": "John",
+      "lastNameLabel": "Last Name",
+      "lastNamePlaceholder": "Doe",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "+1 555 000 0000",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Enter a valid phone number (numbers only, min. 9 digits)"
+    },
+    "confirmationPage": {
+      "title": "Booking Confirmed!",
+      "subtitle": "We've sent a confirmation email to",
+      "bookingId": "Booking ID",
+      "service": "Service",
+      "dateTime": "Date & Time",
+      "location": "Location",
+      "stylist": "Stylist",
+      "noPreference": "No Preference",
+      "noPreferenceDesc": "We'll assign you the best available",
+      "client": "Client",
+      "phone": "Phone",
+      "chargedToday": "Charged today",
+      "paymentNote": "Payment at the salon after service",
+      "needChange": "Need to change your appointment? Contact us at",
+      "bookAnother": "Book Another Appointment",
+      "backHome": "Back to Home"
+    }
   }
 }

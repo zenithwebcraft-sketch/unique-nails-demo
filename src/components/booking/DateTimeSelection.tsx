@@ -3,10 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, enUS } from 'date-fns/locale';
 import { generateTimeSlots, isSlotBusy } from '@/lib/booking/dateUtils';
 import { fetchAvailability } from '@/lib/booking/api';
 import { Clock, Loader2 } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface DateTimeSelectionProps {
   onSelectDateTime: (date: string, time: string) => void;
@@ -23,6 +24,7 @@ export const DateTimeSelection = ({
   serviceDuration,
   serviceId,
 }: DateTimeSelectionProps) => {
+  const { translations, language } = useLanguage();
   const [date, setDate] = useState<Date | undefined>(
     selectedDate ? new Date(selectedDate) : undefined
   );
@@ -32,6 +34,9 @@ export const DateTimeSelection = ({
 
   const dateStr = date ? format(date, 'yyyy-MM-dd') : '';
   const timeSlots = dateStr ? generateTimeSlots(dateStr) : [];
+  
+  // Select locale based on language
+  const locale = language === 'es' ? es : enUS;
 
   // Fetch availability when date changes
   useEffect(() => {
@@ -48,7 +53,7 @@ export const DateTimeSelection = ({
         setBusyTimes(availability.busyTimes || []);
       } catch (err: any) {
         console.error('Error loading availability:', err);
-        setError('Error al cargar disponibilidad. Inténtalo de nuevo.');
+        setError(translations.booking.dateTime.error);
         setBusyTimes([]);
       } finally {
         setLoading(false);
@@ -56,7 +61,7 @@ export const DateTimeSelection = ({
     };
 
     loadAvailability();
-  }, [dateStr, serviceId]);
+  }, [dateStr, serviceId, translations.booking.dateTime.error]);
 
   const handleDateSelect = (newDate: Date | undefined) => {
     setDate(newDate);
@@ -77,32 +82,35 @@ export const DateTimeSelection = ({
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-2">
-          Elige Fecha y Hora
+          {translations.booking.dateTime.title}
         </h2>
         <p className="text-gray-600">
-          Selecciona el día y horario que prefieres
+          {translations.booking.dateTime.subtitle}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-6">
         {/* Calendar */}
         <Card>
           <CardHeader>
-            <CardTitle>Selecciona una Fecha</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="h-5 w-5" />
+              {translations.booking.dateTime.selectDate}
+            </CardTitle>
           </CardHeader>
-          <CardContent className="flex justify-center">
+          <CardContent>
             <Calendar
               mode="single"
               selected={date}
               onSelect={handleDateSelect}
-              locale={es}
               disabled={(date) => {
                 const day = date.getDay();
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
-                return day === 0 || date < today; // Domingo o pasado
+                return day === 0 || date < today;
               }}
               className="rounded-md border"
+              locale={locale}
             />
           </CardContent>
         </Card>
@@ -110,49 +118,45 @@ export const DateTimeSelection = ({
         {/* Time Slots */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="h-5 w-5" />
-              Horarios Disponibles
-            </CardTitle>
+            <CardTitle>{translations.booking.dateTime.availableSlots}</CardTitle>
             {dateStr && (
               <p className="text-sm text-gray-600">
-                {format(date!, "EEEE, d 'de' MMMM", { locale: es })}
+                {format(date!, "EEEE, d 'de' MMMM", { locale })}
               </p>
             )}
           </CardHeader>
-          <CardContent>
+          <CardContent className="max-h-[400px] overflow-y-auto">
             {!dateStr ? (
               <p className="text-center text-gray-500 py-8">
-                Selecciona una fecha para ver horarios disponibles
+                {translations.booking.dateTime.noDateSelected}
               </p>
             ) : loading ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="h-8 w-8 animate-spin text-pink-600" />
-                <span className="ml-2 text-gray-600">Cargando disponibilidad...</span>
+                <Loader2 className="h-6 w-6 animate-spin text-pink-600" />
+                <span className="ml-2">{translations.booking.dateTime.loading}</span>
               </div>
             ) : error ? (
-              <div className="text-center py-8">
-                <p className="text-red-500 mb-4">{error}</p>
+              <div className="text-center py-8 space-y-4">
+                <p className="text-red-600">{error}</p>
                 <Button onClick={() => setDate(new Date(date!))} variant="outline" size="sm">
-                  Reintentar
+                  {translations.booking.dateTime.retry}
                 </Button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-3 max-h-96 overflow-y-auto">
+              <div className="grid grid-cols-2 gap-2">
                 {timeSlots.map((time) => {
                   const available = isTimeSlotAvailable(time);
                   return (
                     <Button
-                        key={time}
-                        variant={selectedTime === time ? 'default' : available ? 'outline' : 'ghost'}
-                        className={`w-full ${!available ? 'opacity-40 cursor-not-allowed line-through' : ''}`}
-                        onClick={() => available && handleTimeSelect(time)}
-                        disabled={!available}
-                        >
-                        {time}
-                        {!available && <span className="ml-2 text-xs">🚫</span>}
+                      key={time}
+                      variant={selectedTime === time ? 'default' : 'outline'}
+                      className="w-full"
+                      onClick={() => available && handleTimeSelect(time)}
+                      disabled={!available}
+                    >
+                      {time}
+                      {!available && ' 🚫'}
                     </Button>
-
                   );
                 })}
               </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface EmailCaptureProps {
   onSubmit: (email: string) => void;
@@ -10,6 +11,7 @@ interface EmailCaptureProps {
 }
 
 export const EmailCapture = ({ onSubmit, onBack, initialEmail = '' }: EmailCaptureProps) => {
+  const { translations } = useLanguage();
   const [email, setEmail] = useState(initialEmail);
   const [error, setError] = useState('');
 
@@ -20,73 +22,64 @@ export const EmailCapture = ({ onSubmit, onBack, initialEmail = '' }: EmailCaptu
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email.trim()) {
-      setError('Por favor ingresa tu email');
+      setError(translations.booking.emailCapture.emailRequired);
       return;
     }
-    
+
     if (!validateEmail(email)) {
-      setError('Por favor ingresa un email válido');
+      setError(translations.booking.emailCapture.emailInvalid);
       return;
     }
-    
+
     setError('');
     onSubmit(email);
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-pink-100 rounded-full mb-4">
+    <div className="max-w-md mx-auto space-y-6">
+      <div className="text-center space-y-2">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-pink-100 mb-4">
           <Mail className="h-8 w-8 text-pink-600" />
         </div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">
-          ¿Cuál es tu email?
+        <h2 className="text-3xl font-bold text-gray-900">
+          {translations.booking.emailCapture.title}
         </h2>
         <p className="text-gray-600">
-          Te enviaremos la confirmación de tu cita aquí
+          {translations.booking.emailCapture.subtitle}
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6">
-        <div>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-2">
+          <label htmlFor="email" className="text-sm font-medium text-gray-700">
+            {translations.booking.emailCapture.emailLabel}
+          </label>
           <Input
+            id="email"
             type="email"
-            placeholder="tu@email.com"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
               setError('');
             }}
-            className={`text-lg py-6 ${error ? 'border-red-500' : ''}`}
-            autoFocus
+            placeholder={translations.booking.emailCapture.emailPlaceholder}
+            className={error ? 'border-red-500' : ''}
           />
           {error && (
-            <p className="text-red-500 text-sm mt-2">{error}</p>
+            <p className="text-sm text-red-600">{error}</p>
           )}
         </div>
 
-        <div className="flex gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onBack}
-            className="flex-1 py-6"
-          >
-            Volver
+        <div className="flex gap-3">
+          <Button type="button" variant="outline" onClick={onBack} className="flex-1">
+            {translations.booking.back}
           </Button>
-          <Button
-            type="submit"
-            className="flex-1 py-6"
-          >
-            Continuar
+          <Button type="submit" className="flex-1">
+            {translations.booking.emailCapture.continueButton}
           </Button>
         </div>
-
-        <p className="text-xs text-gray-500 text-center">
-          Al continuar aceptas recibir confirmaciones y recordatorios por email
-        </p>
       </form>
     </div>
   );

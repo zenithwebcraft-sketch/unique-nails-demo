@@ -48,6 +48,14 @@
     "locations": "Ubicaciones",
     "rights": "Todos los derechos reservados."
   },
+  "navigation": {
+    "services": "Servicios",
+    "pricing": "Precios",
+    "team": "Equipo",
+    "testimonials": "Opiniones",
+    "location": "Ubicación",
+    "bookNow": "Reservar cita"
+  },
   "booking": {
     "title": "Reservar Cita",
     "selectService": "Selecciona un Servicio",
@@ -58,14 +66,64 @@
     "price": "Precio",
     "next": "Siguiente",
     "back": "Atrás",
-    "confirm": "Confirmar Reserva"
-  },
-    "navigation": {
-    "services": "Servicios",
-    "pricing": "Precios",
-    "team": "Equipo",
-    "testimonials": "Opiniones",
-    "location": "Ubicación",
-    "bookNow": "Reservar cita"
+    "confirm": "Confirmar Reserva",
+    "minutes": "minutos",
+    "emailCapture": {
+      "title": "Comienza tu reserva",
+      "subtitle": "Te enviaremos la confirmación de tu cita aquí",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "continueButton": "Continuar",
+      "emailRequired": "Por favor ingresa tu email",
+      "emailInvalid": "Por favor ingresa un email válido"
+    },
+    "serviceSelection": {
+      "title": "Selecciona tu Servicio",
+      "subtitle": "Elige el tratamiento que deseas reservar",
+      "selected": "✓ Seleccionado",
+      "select": "Seleccionar"
+    },
+    "dateTime": {
+      "title": "Elige Fecha y Hora",
+      "subtitle": "Selecciona el día y horario que prefieres",
+      "selectDate": "Selecciona una Fecha",
+      "availableSlots": "Horarios Disponibles",
+      "noDateSelected": "Selecciona una fecha para ver horarios disponibles",
+      "loading": "Cargando disponibilidad...",
+      "error": "Error al cargar disponibilidad. Inténtalo de nuevo.",
+      "retry": "Reintentar"
+    },
+    "personalDetails": {
+      "title": "Tus Datos Personales",
+      "subtitle": "Necesitamos esta información para confirmar tu cita",
+      "firstNameLabel": "Nombre",
+      "firstNamePlaceholder": "Juan",
+      "lastNameLabel": "Apellido",
+      "lastNamePlaceholder": "Pérez",
+      "phoneLabel": "Teléfono",
+      "phonePlaceholder": "+34 600 000 000",
+      "firstNameRequired": "El nombre es obligatorio",
+      "lastNameRequired": "El apellido es obligatorio",
+      "phoneRequired": "El teléfono es obligatorio",
+      "phoneInvalid": "Ingresa un teléfono válido (solo números, mín. 9 dígitos)"
+    },
+    "confirmationPage": {
+      "title": "¡Reserva Confirmada!",
+      "subtitle": "Hemos enviado un email de confirmación a",
+      "bookingId": "Booking ID",
+      "service": "Servicio",
+      "dateTime": "Fecha y hora",
+      "location": "Ubicación",
+      "stylist": "Estilista",
+      "noPreference": "No Preference",
+      "noPreferenceDesc": "Se te asignará el mejor disponible",
+      "client": "Cliente",
+      "phone": "Teléfono",
+      "chargedToday": "Charged today",
+      "paymentNote": "Pago en el salón después del servicio",
+      "needChange": "¿Necesitas cambiar tu cita? Contáctanos al",
+      "bookAnother": "Reservar otra cita",
+      "backHome": "Volver al inicio"
+    }
   }
 }
