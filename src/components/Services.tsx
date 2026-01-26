@@ -2,6 +2,7 @@ import { Check, Sparkles, Eye, Brush, Hand, Footprints, Flower2, Zap, Heart } fr
 import { Button } from "@/components/ui/button";
 import { services } from "@/config/siteConfig";
 import { siteConfig } from "@/config/siteConfig";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const iconMap: Record<string, React.ReactNode> = {
   Sparkles: <Sparkles className="w-8 h-8" />,
@@ -15,19 +16,21 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export const Services = () => {
+  const { translations: t } = useLanguage();
+  
   return (
     <section id="servicios" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Section header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
-            Nuestros Servicios
+            {t.services.badge}
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Nuestros Servicios Profesionales
+            {t.services.title}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-              Ofrecemos servicios profesionales de alta calidad con personal certificado y las mejores prácticas del sector.
+            {t.services.subtitle}
           </p>
         </div>
 
@@ -40,10 +43,9 @@ export const Services = () => {
                 index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               } gap-8 lg:gap-16 items-center`}
             >
-              {/* Image placeholder - REEMPLAZA DESDE AQUÍ */}
+              {/* Image placeholder */}
               <div className="w-full lg:w-1/2">
                 <div className="relative aspect-[4/3] bg-muted rounded-2xl overflow-hidden group shadow-lg">
-                  {/* Lógica: Si hay imagen, muéstrala. Si no, muestra el icono de respaldo */}
                   {service.image ? (
                     <img
                       src={service.image}
@@ -56,11 +58,9 @@ export const Services = () => {
                     </div>
                   )}
                   
-                  {/* Capa de brillo al pasar el mouse (opcional) */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                 </div>
               </div>
-              {/* HASTA AQUÍ */}
 
               {/* Content */}
               <div className="w-full lg:w-1/2 space-y-6">
@@ -87,7 +87,7 @@ export const Services = () => {
                   asChild 
                   className="bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
-                  <a href={siteConfig.bookingUrl}>Reservar ahora</a>
+                  <a href={siteConfig.bookingUrl}>{t.services.cta}</a>
                 </Button>
               </div>
             </div>

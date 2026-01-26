@@ -2,9 +2,11 @@ import { MapPin, Clock, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import businessData from "@/config/business.json";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export const Location = () => {
   const { business } = businessData;
+  const { translations: t } = useLanguage();
   
   return (
     <section id="ubicacion" className="py-24 bg-background">
@@ -12,13 +14,13 @@ export const Location = () => {
         {/* Section header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
-            Ubicación
+            {t.location.badge}
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Encuéntranos
+            {t.location.title}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Estamos ubicados estratégicamente para tu comodidad.
+            {t.location.subtitle}
           </p>
         </div>
 
@@ -31,14 +33,14 @@ export const Location = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <MapPin className="w-12 h-12 text-primary/30 mx-auto mb-2" />
-                    <span className="text-muted-foreground text-sm">Mapa interactivo</span>
+                    <span className="text-muted-foreground text-sm">Interactive map</span>
                   </div>
                 </div>
               </div>
               
               <CardContent className="p-6 space-y-4">
                 <h3 className="font-display text-xl font-semibold text-foreground">
-                  {businessData.business.name} - {location.name}
+                  {business.name} - {location.name}
                 </h3>
                 
                 <div className="space-y-3">
@@ -75,7 +77,7 @@ export const Location = () => {
                   className="w-full border-primary text-foreground hover:bg-primary/10"
                 >
                   <a href={location.mapUrl} target="_blank" rel="noopener noreferrer">
-                    Cómo llegar
+                    {t.location.cta}
                   </a>
                 </Button>
               </CardContent>
