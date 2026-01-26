@@ -496,97 +496,33 @@ text
 □ Verificar SEO (meta tags, title)
 □ Entregar al cliente
 
-## 🌐 Sistema Multiidioma
+## 🌍 Sistema Multiidioma
 
-### Cómo funciona
+La plantilla incluye soporte completo para español e inglés en **todos los componentes**, incluyendo el sistema de citas.
 
-El sistema detecta automáticamente el idioma del navegador:
-- 🇪🇸 **Español**: Si el navegador está configurado en español
-- 🇬🇧 **Inglés**: Para cualquier otro idioma
+### Detección automática de idioma
 
-### Estructura de archivos
+El idioma se detecta automáticamente según el navegador del usuario:
+- Navegador en español → Sitio en español
+- Otros idiomas → Sitio en inglés (por defecto)
 
-```
+### Estructura de archivos de traducción
+
 src/
 ├── i18n/
-│   ├── es.json              # 🇪🇸 Traducciones de UI (español)
-│   └── en.json              # 🇬🇧 Traducciones de UI (inglés)
-└── config/
-    ├── business.json        # Datos del negocio (sin traducir)
-    ├── booking.json         # Configuración técnica (sin traducir)
-    ├── es/
-    │   ├── services.json    # 🇪🇸 Servicios en español
-    │   └── staff.json       # 🇪🇸 Staff en español
-    └── en/
-        ├── services.json    # 🇬🇧 Servicios en inglés
-        └── staff.json       # 🇬🇧 Staff en inglés
-```
+│ ├── es.json # Traducciones UI español
+│ └── en.json # Traducciones UI inglés
+├── config/
+│ ├── business.json # NO necesita traducción
+│ ├── booking.json # NO necesita traducción
+│ ├── es/
+│ │ ├── services.json # Servicios en español
+│ │ └── staff.json # Equipo en español
+│ └── en/
+│ ├── services.json # Servicios en inglés
+│ └── staff.json # Equipo en inglés
 
-### Qué está traducido
-
-✅ **Textos de UI** (en `i18n/es.json` y `i18n/en.json`):
-- Hero (títulos, botones, stats)
-- Servicios (títulos de sección, botones)
-- Precios (títulos, períodos)
-- Equipo (títulos de sección)
-- Testimonios (títulos de sección)
-- Ubicación (títulos, botones)
-- Footer (navegación, contacto)
-- Navegación (menú del header)
-- Sistema de citas (labels, botones) - **EN DESARROLLO**
-
-✅ **Contenido dinámico** (en `config/es/` y `config/en/`):
-- Servicios (títulos, descripciones, beneficios)
-- Staff (nombres, roles, biografías)
-- Planes de precios (nombres, descripciones, features)
-- Testimonios (nombres, textos)
-
-❌ **NO traducido** (datos únicos):
-- Nombre del negocio (es el mismo en todos los idiomas)
-- Teléfono y email (son los mismos)
-- Dirección física (es la misma ubicación real)
-- Configuración técnica de booking
-
-### Agregar nuevos textos traducibles
-
-1. **Para textos de UI**, agrega en ambos archivos `i18n/`:
-
-   **`es.json`:**
-   ```json
-   {
-     "nuevaSeccion": {
-       "titulo": "Texto en español",
-       "subtitulo": "Descripción en español"
-     }
-   }
-   ```
-
-   **`en.json`:**
-   ```json
-   {
-     "nuevaSeccion": {
-       "titulo": "Text in English",
-       "subtitulo": "Description in English"
-     }
-   }
-   ```
-
-2. **Usa el hook en tu componente**:
-   ```tsx
-   import { useLanguage } from "@/hooks/useLanguage";
-
-   export const MiComponente = () => {
-     const { translations: t } = useLanguage();
-     
-     return (
-       <h1>{t.nuevaSeccion.titulo}</h1>
-     );
-   };
-   ```
-
-3. **Para contenido de servicios/staff**, edita los archivos JSON en ambas carpetas:
-   - `src/config/es/services.json`
-   - `src/config/en/services.json`
+text
 
 ### Personalización para clientes
 
@@ -597,24 +533,227 @@ Al clonar la plantilla para un nuevo cliente:
 3. **Mantén business.json único**: No necesita traducción (nombre, teléfono, dirección son los mismos)
 4. **Verifica traducciones de UI**: Revisa `i18n/es.json` y `i18n/en.json` por si necesitas ajustar algún texto genérico
 
-### Agregar más idiomas (avanzado)
+### Componentes traducidos
 
+✅ **Landing Page**
+- Hero, Services, Pricing, Team, Testimonials, Location, Footer, Header
+
+✅ **Sistema de Booking (100% completo)**
+- Stepper de navegación (Paso 1 de 4, etc.)
+- Selección de servicio
+- Selección de fecha y hora
+- Captura de email
+- Formulario de datos personales
+- Confirmación de reserva
+- Sidebar de resumen de cita
+- Mensajes de validación y errores
+- Notificaciones toast
+
+### Textos clave del booking traducidos
+
+Los archivos `i18n/es.json` y `i18n/en.json` incluyen las siguientes secciones para el sistema de citas:
+
+- **`booking.stepper`**: Indicadores de paso (Paso X de Y, nombres de pasos)
+- **`booking.summary`**: Sidebar de resumen (Servicio, Fecha, Cliente, Total, etc.)
+- **`booking.navigation`**: Botones de navegación (Volver, Continuar, etc.)
+- **`booking.messages`**: Mensajes de éxito/error y validaciones
+- **`booking.emailCapture`**: Pantalla de captura de email
+- **`booking.serviceSelection`**: Selección de servicio
+- **`booking.dateTime`**: Selección de fecha y hora
+- **`booking.personalDetails`**: Formulario de datos personales
+- **`booking.confirmationPage`**: Página de confirmación final
+
+**Ejemplo de estructura en `i18n/es.json`:**
+```json
+{
+  "booking": {
+    "title": "Reservar Cita",
+    "stepper": {
+      "step": "Paso",
+      "of": "de",
+      "service": "Servicio"
+    },
+    "summary": {
+      "title": "Resumen de Cita",
+      "service": "Servicio",
+      "total": "Total"
+    },
+    "messages": {
+      "confirmed": "¡Cita confirmada!",
+      "error": "Error"
+    }
+  }
+}
+Personalizar traducciones del booking
+Si necesitas ajustar los textos del sistema de citas:
+
+Abre src/i18n/es.json y src/i18n/en.json
+
+Busca la sección "booking": { ... }
+
+Modifica los textos que necesites:
+
+json
+"booking": {
+  "title": "Agenda tu Cita",  // Cambiado de "Reservar Cita"
+  "stepper": {
+    "step": "Etapa"  // Cambiado de "Paso"
+  }
+}
+Guarda y recarga la aplicación
+
+Nota: Los cambios en los JSON de traducción se reflejan inmediatamente sin necesidad de recompilar.
+
+Agregar más idiomas (avanzado)
 Para agregar francés, alemán, etc.:
 
-1. Crea archivos de traducción:
-   - `src/i18n/fr.json`, `src/i18n/de.json`
-   - `src/config/fr/services.json`, `src/config/fr/staff.json`
+Crea archivos de traducción:
 
-2. Actualiza `src/hooks/useLanguage.ts`:
-   ```typescript
-   import fr from '@/i18n/fr.json';
-   import servicesDataFR from '@/config/fr/services.json';
-   
-   const detectedLang = browserLang.startsWith('es') ? 'es' 
-     : browserLang.startsWith('fr') ? 'fr'
-     : 'en';
-   ```
+src/i18n/fr.json, src/i18n/de.json
 
-3. Actualiza `src/config/siteConfig.ts` para importar y exportar los nuevos idiomas.
+src/config/fr/services.json, src/config/fr/staff.json
 
----
+Copia la estructura completa de es.json o en.json como base:
+
+powershell
+# Copia el archivo español como base para francés
+cp src/i18n/es.json src/i18n/fr.json
+cp src/config/es/services.json src/config/fr/services.json
+cp src/config/es/staff.json src/config/fr/staff.json
+Traduce todos los textos en los archivos copiados, incluyendo la sección booking completa
+
+Actualiza src/hooks/useLanguage.ts:
+
+typescript
+import es from '@/i18n/es.json';
+import en from '@/i18n/en.json';
+import fr from '@/i18n/fr.json';  // ⬅️ NUEVO
+
+import servicesDataES from '@/config/es/services.json';
+import servicesDataEN from '@/config/en/services.json';
+import servicesDataFR from '@/config/fr/services.json';  // ⬅️ NUEVO
+
+import staffDataES from '@/config/es/staff.json';
+import staffDataEN from '@/config/en/staff.json';
+import staffDataFR from '@/config/fr/staff.json';  // ⬅️ NUEVO
+
+// En la función de detección:
+const detectedLang = browserLang.startsWith('es') ? 'es' 
+  : browserLang.startsWith('fr') ? 'fr'  // ⬅️ NUEVO
+  : 'en';
+
+// En el switch del estado:
+case 'fr':
+  return { 
+    language: 'fr', 
+    translations: fr,
+    // ... resto
+  };
+Actualiza src/config/siteConfig.ts:
+
+typescript
+import { useLanguage } from '@/hooks/useLanguage';
+
+export const { language, translations } = useLanguage();
+
+export const services = language === 'es' ? servicesES 
+  : language === 'fr' ? servicesFR  // ⬅️ NUEVO
+  : servicesEN;
+
+export const staff = language === 'es' ? staffES 
+  : language === 'fr' ? staffFR  // ⬅️ NUEVO
+  : staffEN;
+Actualiza componentes con formateo de fechas:
+
+DateTimeSelection.tsx y BookingConfirmation.tsx usan date-fns con locales
+
+Importa el locale francés:
+
+typescript
+import { es, enUS, fr } from 'date-fns/locale';
+
+const locale = language === 'es' ? es 
+  : language === 'fr' ? fr 
+  : enUS;
+Selector manual de idioma (opcional)
+Si quieres agregar un selector de idioma en el header:
+
+tsx
+// En Header.tsx
+import { useLanguage } from '@/hooks/useLanguage';
+
+const Header = () => {
+  const { language, changeLanguage } = useLanguage();
+  
+  return (
+    <header>
+      {/* ... tu header actual ... */}
+      <select 
+        value={language} 
+        onChange={(e) => changeLanguage(e.target.value as 'es' | 'en')}
+      >
+        <option value="es">🇪🇸 ES</option>
+        <option value="en">🇬🇧 EN</option>
+        <option value="fr">🇫🇷 FR</option>
+      </select>
+    </header>
+  );
+};
+Verificar que todo funciona
+Después de hacer cambios en traducciones:
+
+Navega a /booking en tu aplicación
+
+Completa el flujo de reserva paso por paso
+
+Verifica que todos los textos estén en el idioma correcto:
+
+Título principal
+
+Indicador de pasos (Paso 1 de 4)
+
+Nombres de los pasos del stepper
+
+Sidebar de resumen
+
+Botones de navegación
+
+Mensajes de validación
+
+Pantalla de confirmación
+
+Cambia el idioma del navegador o usa el selector manual y repite la prueba
+
+Archivos que usan traducciones
+Landing Page:
+
+src/components/Hero.tsx
+
+src/components/Services.tsx
+
+src/components/Pricing.tsx
+
+src/components/Team.tsx
+
+src/components/Testimonials.tsx
+
+src/components/Location.tsx
+
+src/components/Footer.tsx
+
+src/components/Header.tsx
+
+Sistema de Booking:
+
+src/pages/booking/Booking.tsx ✅ Página principal con stepper y resumen
+
+src/components/booking/EmailCapture.tsx ✅
+
+src/components/booking/ServiceSelection.tsx ✅
+
+src/components/booking/DateTimeSelection.tsx ✅
+
+src/components/booking/PersonalDetailsForm.tsx ✅
+
+src/components/booking/BookingConfirmation.tsx ✅
+
