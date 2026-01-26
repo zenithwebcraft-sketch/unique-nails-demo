@@ -7,17 +7,17 @@ import { DateTimeSelection } from "@/components/booking/DateTimeSelection";
 import { EmailCapture } from "@/components/booking/EmailCapture";
 import { PersonalDetailsForm } from "@/components/booking/PersonalDetailsForm";
 import { BookingConfirmation } from "@/components/booking/BookingConfirmation";
-import { useState } from 'react';  // 🆕 Agregar si no existe
-import { createBooking } from '@/lib/booking/api';  // 🆕 NUEVO IMPORT
-import { useToast } from '@/hooks/use-toast';  // 🆕 NUEVO IMPORT
-import { Loader2 } from 'lucide-react';  // 🆕 NUEVO IMPORT
-
+import { useState } from 'react';
+import { createBooking } from '@/lib/booking/api';
+import { useToast } from '@/hooks/use-toast';
+import { Loader2 } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const Booking = () => {
   const { currentStep, formData, service, updateFormData, nextStep, previousStep, reset } = useBookingFlow();
-
-  const { toast } = useToast();  // 🆕 AGREGAR
-  const [isSubmitting, setIsSubmitting] = useState(false);  // 🆕 AGREGAR
+  const { translations, language } = useLanguage();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const handleServiceSelect = (serviceId: string) => {
     updateFormData({ serviceId });
@@ -34,74 +34,67 @@ const Booking = () => {
     nextStep();
   };
 
-const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: string; lastName: string }) => {
-  if (!service || !formData.date || !formData.time || !formData.email) {
-    toast({
-      title: "Error",
-      description: "Faltan datos de la reserva",
-      variant: "destructive",
-    });
-    return;
-  }
-
-  setIsSubmitting(true);
-
-  try {
-    // Construir dateTime ISO 8601
-    const dateTime = `${formData.date}T${formData.time}:00+01:00`;
-
-    // Crear booking en Google Calendar
-    const response = await createBooking({
-      serviceId: service.id,
-      serviceTitle: service.title,
-      dateTime,
-      duration: service.durationMin,
-      email: formData.email,
-      phone: data.phone,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      price: service.priceEUR,
-    });
-
-    if (response.success) {
-      // Guardar datos y avanzar a confirmación
-      updateFormData(data);
-      nextStep();
-      
+  const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: string; lastName: string }) => {
+    if (!service || !formData.date || !formData.time || !formData.email) {
       toast({
-        title: "¡Cita confirmada!",
-        description: "Tu reserva ha sido creada exitosamente",
+        title: translations.booking.messages.error,
+        description: translations.booking.messages.missingData,
+        variant: "destructive",
       });
-    } else {
-      throw new Error(response.error?.message || 'Error desconocido');
+      return;
     }
-  } catch (error: any) {
-  console.error('Booking error:', error);
-  
-  if (error.message.includes('SLOT_NO_LONGER_AVAILABLE')) {
-    toast({
-      title: "Horario no disponible",
-      description: "Este horario acaba de ser reservado. Por favor selecciona otro.",
-      variant: "destructive",
-    });
-    // Volver al paso de selección de fecha/hora
-    updateFormData({ date: undefined, time: undefined });
-    // Como estamos en step 4 (details), hacemos previousStep 2 veces para volver a datetime
-    previousStep();
-    previousStep();
-  } else {
-    toast({
-      title: "Error al crear reserva",
-      description: error.message || "Hubo un problema. Por favor intenta de nuevo.",
-      variant: "destructive",
-    });
-  }
-} finally {
-  setIsSubmitting(false);
-}
 
-};
+    setIsSubmitting(true);
 
+    try {
+      const dateTime = `${formData.date}T${formData.time}:00+01:00`;
+
+      const response = await createBooking({
+        serviceId: service.id,
+        serviceTitle: service.title,
+        dateTime,
+        duration: service.durationMin,
+        email: formData.email,
+        phone: data.phone,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        price: service.priceEUR,
+      });
+
+      if (response.success) {
+        updateFormData(data);
+        nextStep();
+        
+        toast({
+          title: translations.booking.messages.confirmed,
+          description: translations.booking.messages.confirmedDesc,
+        });
+      } else {
+        throw new Error(response.error?.message || 'Error desconocido');
+      }
+    } catch (error: any) {
+      console.error('Booking error:', error);
+      
+      if (error.message.includes('SLOT_NO_LONGER_AVAILABLE')) {
+        toast({
+          title: translations.booking.messages.slotUnavailable,
+          description: translations.booking.messages.slotUnavailableDesc,
+          variant: "destructive",
+        });
+        updateFormData({ date: undefined, time: undefined });
+        previousStep();
+        previousStep();
+      } else {
+        toast({
+          title: translations.booking.messages.bookingError,
+          description: error.message || translations.booking.messages.bookingErrorDesc,
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const getStepNumber = () => {
     const stepMap = {
@@ -122,23 +115,23 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
           <Link to="/">
             <Button variant="ghost" className="gap-2">
               <ArrowLeft className="h-4 w-4" />
-              Volver al inicio
+              {translations.booking.navigation.backHome}
             </Button>
           </Link>
           <div className="flex-1 text-center">
             <h1 className="text-3xl font-bold text-gray-900">
-              Reserva tu Cita
+              {translations.booking.title}
             </h1>
             {currentStep !== 'confirmation' && (
               <p className="text-sm text-gray-600 mt-1">
-                Paso {getStepNumber()} de 4
+                {translations.booking.stepper.step} {getStepNumber()} {translations.booking.stepper.of} 4
               </p>
             )}
           </div>
-          <div className="w-32" /> {/* Spacer */}
+          <div className="w-32" />
         </div>
 
-        {/* Progress bar - Only show if not on confirmation */}
+        {/* Progress bar */}
         {currentStep !== 'confirmation' && (
           <div className="max-w-4xl mx-auto mb-8">
             <div className="flex items-center justify-between">
@@ -149,7 +142,7 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
                 }`}>
                   1
                 </div>
-                <span className="text-sm font-medium hidden sm:inline">Servicio</span>
+                <span className="text-sm font-medium hidden sm:inline">{translations.booking.stepper.service}</span>
               </div>
               <div className="flex-1 h-1 bg-gray-200 mx-2 sm:mx-4" />
               
@@ -160,7 +153,7 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
                 }`}>
                   2
                 </div>
-                <span className="text-sm font-medium hidden sm:inline">Fecha/Hora</span>
+                <span className="text-sm font-medium hidden sm:inline">{translations.booking.stepper.dateTime}</span>
               </div>
               <div className="flex-1 h-1 bg-gray-200 mx-2 sm:mx-4" />
               
@@ -171,7 +164,7 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
                 }`}>
                   3
                 </div>
-                <span className="text-sm font-medium hidden sm:inline">Email</span>
+                <span className="text-sm font-medium hidden sm:inline">{translations.booking.stepper.email}</span>
               </div>
               <div className="flex-1 h-1 bg-gray-200 mx-2 sm:mx-4" />
               
@@ -182,7 +175,7 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
                 }`}>
                   4
                 </div>
-                <span className="text-sm font-medium hidden sm:inline">Datos</span>
+                <span className="text-sm font-medium hidden sm:inline">{translations.booking.stepper.details}</span>
               </div>
             </div>
           </div>
@@ -216,14 +209,14 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
                         onClick={previousStep}
                         className="flex-1"
                       >
-                        Volver
+                        {translations.booking.navigation.back}
                       </Button>
                       <Button
                         onClick={nextStep}
                         disabled={!formData.date || !formData.time}
                         className="flex-1"
                       >
-                        Continuar
+                        {translations.booking.navigation.continue}
                       </Button>
                     </div>
                   </>
@@ -238,25 +231,25 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
                 )}
 
                 {currentStep === 'details' && (
-                <>
+                  <>
                     {isSubmitting && (
-                    <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10 rounded-lg">
+                      <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10 rounded-lg">
                         <div className="text-center">
-                        <Loader2 className="h-12 w-12 animate-spin text-pink-600 mx-auto mb-4" />
-                        <p className="text-gray-700 font-medium">Creando tu reserva...</p>
+                          <Loader2 className="h-12 w-12 animate-spin text-pink-600 mx-auto mb-4" />
+                          <p className="text-gray-700 font-medium">{translations.booking.messages.creating}</p>
                         </div>
-                    </div>
+                      </div>
                     )}
                     <PersonalDetailsForm
-                    onSubmit={handlePersonalDetailsSubmit}
-                    onBack={previousStep}
-                    initialData={{
+                      onSubmit={handlePersonalDetailsSubmit}
+                      onBack={previousStep}
+                      initialData={{
                         phone: formData.phone,
                         firstName: formData.firstName,
                         lastName: formData.lastName,
-                    }}
+                      }}
                     />
-                </>
+                  </>
                 )}
 
                 {currentStep === 'confirmation' && service && formData.email && formData.firstName && formData.lastName && (
@@ -280,27 +273,27 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
               </div>
             </div>
 
-            {/* Right side - Appointment summary (hidden on confirmation) */}
+            {/* Right side - Appointment summary */}
             {currentStep !== 'confirmation' && (
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-lg shadow-lg p-6 sticky top-8">
                   <h3 className="text-xl font-semibold mb-4 border-b pb-3">
-                    Resumen de Cita
+                    {translations.booking.summary.title}
                   </h3>
 
                   {service ? (
                     <div className="space-y-4">
                       <div>
-                        <p className="text-sm text-gray-600">Servicio</p>
+                        <p className="text-sm text-gray-600">{translations.booking.summary.service}</p>
                         <p className="font-medium">{service.title}</p>
-                        <p className="text-sm text-gray-500">{service.durationMin} min</p>
+                        <p className="text-sm text-gray-500">{service.durationMin} {translations.booking.minutes}</p>
                       </div>
 
                       {formData.date && formData.time && (
                         <div className="border-t pt-4">
-                          <p className="text-sm text-gray-600">Fecha y Hora</p>
+                          <p className="text-sm text-gray-600">{translations.booking.summary.dateTime}</p>
                           <p className="font-medium">
-                            {new Date(formData.date).toLocaleDateString('es-ES', {
+                            {new Date(formData.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', {
                               weekday: 'long',
                               year: 'numeric',
                               month: 'long',
@@ -312,20 +305,20 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
                       )}
 
                       <div className="border-t pt-4">
-                        <p className="text-sm text-gray-600">Estilista</p>
-                        <p className="font-medium">No Preference</p>
+                        <p className="text-sm text-gray-600">{translations.booking.summary.stylist}</p>
+                        <p className="font-medium">{translations.booking.summary.noPreference}</p>
                       </div>
 
                       {formData.email && (
                         <div className="border-t pt-4">
-                          <p className="text-sm text-gray-600">Email</p>
+                          <p className="text-sm text-gray-600">{translations.booking.summary.email}</p>
                           <p className="font-medium text-sm break-all">{formData.email}</p>
                         </div>
                       )}
 
                       {formData.firstName && formData.lastName && (
                         <div className="border-t pt-4">
-                          <p className="text-sm text-gray-600">Cliente</p>
+                          <p className="text-sm text-gray-600">{translations.booking.summary.client}</p>
                           <p className="font-medium">{formData.firstName} {formData.lastName}</p>
                           {formData.phone && (
                             <p className="text-sm text-gray-500">{formData.phone}</p>
@@ -335,26 +328,30 @@ const handlePersonalDetailsSubmit = async (data: { phone: string; firstName: str
 
                       <div className="border-t pt-4">
                         <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm text-gray-600">Subtotal</span>
+                          <span className="text-sm text-gray-600">{translations.booking.summary.subtotal}</span>
                           <span className="font-medium">{service.priceEUR}€</span>
                         </div>
                         <div className="flex justify-between items-center text-lg font-bold border-t pt-2">
-                          <span>Total</span>
+                          <span>{translations.booking.summary.total}</span>
                           <span className="text-pink-600">{service.priceEUR}€</span>
                         </div>
                       </div>
 
                       <div className="bg-pink-50 p-4 rounded-lg text-sm">
-                        <p className="font-medium text-pink-900 mb-1">💳 Pay in person</p>
-                        <p className="text-pink-800">Charged today: 0€</p>
+                        <p className="font-medium text-pink-900 mb-1">
+                          💳 {translations.booking.summary.payInPerson}
+                        </p>
+                        <p className="text-pink-800">
+                          {translations.booking.summary.chargedToday}: 0€
+                        </p>
                         <p className="text-pink-700 text-xs mt-2">
-                          El pago se realizará en el salón después del servicio.
+                          {translations.booking.summary.paymentNote}
                         </p>
                       </div>
                     </div>
                   ) : (
                     <p className="text-gray-500 text-center py-8">
-                      Selecciona un servicio para comenzar
+                      {translations.booking.summary.selectServicePrompt}
                     </p>
                   )}
                 </div>

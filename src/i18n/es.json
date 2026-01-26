@@ -77,6 +77,45 @@
       "emailRequired": "Por favor ingresa tu email",
       "emailInvalid": "Por favor ingresa un email válido"
     },
+      "stepper": {
+        "step": "Paso",
+        "of": "de",
+        "service": "Servicio",
+        "dateTime": "Fecha/Hora",
+        "email": "Email",
+        "details": "Datos"
+    },
+      "summary": {
+        "title": "Resumen de Cita",
+        "service": "Servicio",
+        "dateTime": "Fecha y Hora",
+        "stylist": "Estilista",
+        "noPreference": "No Preference",
+        "email": "Email",
+        "client": "Cliente",
+        "subtotal": "Subtotal",
+        "total": "Total",
+        "payInPerson": "Pay in person",
+        "chargedToday": "Charged today",
+        "paymentNote": "El pago se realizará en el salón después del servicio.",
+        "selectServicePrompt": "Selecciona un servicio para comenzar"
+    },
+    "navigation": {
+        "backHome": "Volver al inicio",
+        "back": "Volver",
+        "continue": "Continuar"
+    },
+      "messages": {
+        "creating": "Creando tu reserva...",
+        "confirmed": "¡Cita confirmada!",
+        "confirmedDesc": "Tu reserva ha sido creada exitosamente",
+        "error": "Error",
+        "missingData": "Faltan datos de la reserva",
+        "slotUnavailable": "Horario no disponible",
+        "slotUnavailableDesc": "Este horario acaba de ser reservado. Por favor selecciona otro.",
+        "bookingError": "Error al crear reserva",
+        "bookingErrorDesc": "Hubo un problema. Por favor intenta de nuevo."
+    },
     "serviceSelection": {
       "title": "Selecciona tu Servicio",
       "subtitle": "Elige el tratamiento que deseas reservar",
