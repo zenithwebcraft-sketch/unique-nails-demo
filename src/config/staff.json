@@ -1,36 +1,34 @@
-{
-  "staff": [
-    {
-      "id": "dayana-pestana",
-      "name": "Dayana Pestana",
-      "role": "Fundadora & Especialista en Cejas",
-      "bio": "Con más de 10 años de experiencia en el mundo de la belleza, Dayana lidera nuestro equipo con pasión y dedicación.",
-      "image": "images/vanity/0_Dayana1.jpg",
-      "active": true
-    },
-    {
-      "id": "isis-casique",
-      "name": "Isis Casique",
-      "role": "Especialista en Pestañas",
-      "bio": "Artista certificada en extensiones y lifting de pestañas. Transforma miradas con precisión y delicadeza.",
-      "image": "images/vanity/0_Isis1.jpg",
-      "active": true
-    },
-    {
-      "id": "leumin-boyer",
-      "name": "Leumin Boyer",
-      "role": "Nail Artist",
-      "bio": "Creativa y detallista, Leumin convierte cada uña en una obra de arte. Experta en tendencias internacionales.",
-      "image": "images/vanity/0_Leumin2.jpg",
-      "active": true
-    },
-    {
-      "id": "yersin-catherine-briceno",
-      "name": "Yersin Catherine Briceño",
-      "role": "Especialista en Tratamientos Faciales",
-      "bio": "Profesional dedicada al cuidado de la piel con formación avanzada en estética facial y corporal.",
-      "image": "images/vanity/Yersin-Briceno.jpg",
-      "active": true
-    }
-  ]
-}
+[
+  {
+    "id": "profesional-1",
+    "name": "Nombre Profesional 1",
+    "role": "Fundador/a & Especialista Senior",
+    "bio": "Con más de 10 años de experiencia en el sector. Lidera el equipo con profesionalismo, pasión y dedicación al cliente.",
+    "image": "images/placeholder/staff-1.jpg",
+    "active": true
+  },
+  {
+    "id": "profesional-2",
+    "name": "Nombre Profesional 2",
+    "role": "Especialista Certificado/a",
+    "bio": "Especialista certificado con formación internacional. Experto en técnicas avanzadas y atención personalizada.",
+    "image": "images/placeholder/staff-2.jpg",
+    "active": true
+  },
+  {
+    "id": "profesional-3",
+    "name": "Nombre Profesional 3",
+    "role": "Técnico/a Especializado/a",
+    "bio": "Profesional joven con gran talento y dedicación. Especializado en las últimas tendencias y técnicas del sector.",
+    "image": "images/placeholder/staff-3.jpg",
+    "active": true
+  },
+  {
+    "id": "profesional-4",
+    "name": "Nombre Profesional 4",
+    "role": "Consultor/a de Servicios",
+    "bio": "Experto en asesoramiento personalizado. Ayuda a cada cliente a encontrar el tratamiento perfecto para sus necesidades.",
+    "image": "images/placeholder/staff-4.jpg",
+    "active": true
+  }
+]

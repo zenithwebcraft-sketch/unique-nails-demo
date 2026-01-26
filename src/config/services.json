@@ -1,144 +1,98 @@
-{
-  "services": [
-    {
-      "id": "depilacion-hilo",
-      "categoryId": "threading",
-      "title": "Depilación con Hilo",
-      "description": "Técnica ancestral para una depilación precisa y duradera. Ideal para cejas y rostro, respetando la piel sensible.",
-      "benefits": [
-        "Sin químicos ni irritación",
-        "Resultados duraderos hasta 4 semanas",
-        "Definición perfecta de cejas"
-      ],
-      "icon": "Sparkles",
-      "durationMin": 30,
-      "priceEUR": 15,
-      "image": "images/vanity/Depilacion-con-hilo.jpg",
-      "imageAlt": "Depilación con hilo en Vanyti Center Beauty"
-    },
-    {
-      "id": "pestanas",
-      "categoryId": "lashes",
-      "title": "Tratamiento de Pestañas",
-      "description": "Realza tu mirada con nuestros tratamientos de pestañas. Desde lifting hasta extensiones de alta calidad.",
-      "benefits": [
-        "Mirada más expresiva y natural",
-        "Materiales hipoalergénicos",
-        "Duración de 4-6 semanas"
-      ],
-      "icon": "Eye",
-      "durationMin": 60,
-      "priceEUR": 45,
-      "image": "images/vanity/Tratamiento-de-pestanas.jpg",
-      "imageAlt": "Tratamiento de Pestañas en Vanyti Center Beauty"
-    },
-    {
-      "id": "cejas",
-      "categoryId": "brows",
-      "title": "Tratamiento de Cejas",
-      "description": "Diseño, laminado y microblading para unas cejas perfectamente definidas que enmarquen tu rostro.",
-      "benefits": [
-        "Diseño personalizado",
-        "Resultados naturales",
-        "Técnicas de última generación"
-      ],
-      "icon": "Brush",
-      "durationMin": 60,
-      "priceEUR": 35,
-      "image": "images/vanity/Tratamiento-de-cejas.jpg",
-      "imageAlt": "Tratamiento de Cejas en Vanyti Center Beauty"
-    },
-    {
-      "id": "manicura",
-      "categoryId": "nails",
-      "title": "Manicura",
-      "description": "Cuidado completo de manos y uñas. Desde manicura clásica hasta nail art y semipermanente.",
-      "benefits": [
-        "Uñas fuertes y saludables",
-        "Colores de tendencia",
-        "Larga duración sin astillado"
-      ],
-      "icon": "Hand",
-      "durationMin": 60,
-      "priceEUR": 25,
-      "image": "images/vanity/Manicura.jpg",
-      "imageAlt": "Manicura en Vanyti Center Beauty"      
-    },
-    {
-      "id": "pedicura",
-      "categoryId": "nails",
-      "title": "Pedicura",
-      "description": "Tratamiento integral para pies cansados. Incluye hidratación, exfoliación y esmaltado perfecto.",
-      "benefits": [
-        "Pies suaves y renovados",
-        "Tratamiento de callosidades",
-        "Relajación completa"
-      ],
-      "icon": "Footprints",
-      "durationMin": 60,
-      "priceEUR": 30,
-      "image": "images/vanity/Pedicura.jpg",
-      "imageAlt": "Pedicura en Vanyti Center Beauty"      
-    },
-    {
-      "id": "tratamientos-faciales",
-      "categoryId": "facials",
-      "title": "Tratamientos Faciales",
-      "description": "Limpieza profunda, hidratación y rejuvenecimiento para una piel radiante y saludable.",
-      "benefits": [
-        "Piel más luminosa",
-        "Hidratación profunda",
-        "Anti-edad efectivo"
-      ],
-      "icon": "Flower2",
-      "durationMin": 60,
-      "priceEUR": 50,
-      "image": "images/vanity/Tratamientos-faciales-corporales.jpg",
-      "imageAlt": "Tratamiento Faciales Corporales en Vanyti Center Beauty"
-    },
-    {
-      "id": "depilacion-laser",
-      "categoryId": "laser",
-      "title": "Depilación Láser",
-      "description": "Tecnología avanzada para eliminación permanente del vello. Resultados visibles desde la primera sesión.",
-      "benefits": [
-        "Resultados permanentes",
-        "Sin dolor",
-        "Apto para todo tipo de piel"
-      ],
-      "icon": "Zap",
-      "durationMin": 30,
-      "priceEUR": 60,
-      "image": "images/vanity/Depilacion-Laser.jpg",
-      "imageAlt": "Depilacion Laser en Vanyti Center Beauty"      
-    },
-    {
-      "id": "tratamientos-corporales",
-      "categoryId": "body",
-      "title": "Tratamientos Corporales",
-      "description": "Masajes, envolturas y tratamientos reductores para un cuerpo tonificado y relajado.",
-      "benefits": [
-        "Reducción de medidas 100%",
-        "Relajación muscular",
-        "Piel más firme"
-      ],
-      "icon": "Heart",
-      "durationMin": 60,
-      "priceEUR": 70,
-      "image": "images/vanity/Tratamientos-faciales-corporales.jpg",
-      "imageAlt": "Tratamiento Corporales en Vanyti Center Beauty"      
-    },
-    {
-      "id": "laminado-cejas",
-      "categoryId": "brows",
-      "title": "Laminado de cejas",
-      "description": "Tratamiento para lograr un acabado limpio y uniforme.",
-      "benefits": [],
-      "icon": "Brush",
-      "durationMin": 60,
-      "priceEUR": 39,
-      "image": "images/vanity/Tratamiento-de-cejas.jpg",
-      "imageAlt": "Laminado de Cejas en Vanyti Center Beauty"
-    }
-  ]
-}
+[
+  {
+    "id": "servicio-premium-1",
+    "categoryId": "premium",
+    "title": "Servicio Premium Plus",
+    "description": "Descripción detallada del servicio premium. Explica en qué consiste, qué técnicas se utilizan y qué resultados puede esperar el cliente.",
+    "benefits": [
+      "Beneficio principal del servicio",
+      "Resultados duraderos y visibles",
+      "Atención personalizada incluida"
+    ],
+    "icon": "Sparkles",
+    "durationMin": 90,
+    "priceEUR": 99,
+    "image": "images/placeholder/servicio-1.jpg",
+    "imageAlt": "Servicio Premium Plus - Tu Negocio Aquí"
+  },
+  {
+    "id": "servicio-estandar-1",
+    "categoryId": "standard",
+    "title": "Servicio Estándar",
+    "description": "Servicio de calidad a precio accesible. Ideal para clientes que buscan excelentes resultados sin comprometer su presupuesto.",
+    "benefits": [
+      "Excelente relación calidad-precio",
+      "Profesionales certificados",
+      "Resultados garantizados"
+    ],
+    "icon": "Star",
+    "durationMin": 60,
+    "priceEUR": 59,
+    "image": "images/placeholder/servicio-2.jpg",
+    "imageAlt": "Servicio Estándar - Tu Negocio Aquí"
+  },
+  {
+    "id": "servicio-express",
+    "categoryId": "express",
+    "title": "Servicio Express",
+    "description": "Servicio rápido sin sacrificar calidad. Perfecto para personas con agenda ocupada que necesitan resultados inmediatos.",
+    "benefits": [
+      "Rápido y efectivo",
+      "Sin cita previa disponible",
+      "Resultados inmediatos"
+    ],
+    "icon": "Zap",
+    "durationMin": 30,
+    "priceEUR": 35,
+    "image": "images/placeholder/servicio-3.jpg",
+    "imageAlt": "Servicio Express - Tu Negocio Aquí"
+  },
+  {
+    "id": "paquete-completo",
+    "categoryId": "packages",
+    "title": "Paquete Completo",
+    "description": "Combinación de servicios con descuento especial. Tratamiento integral para resultados óptimos y ahorro garantizado.",
+    "benefits": [
+      "Hasta 20% de descuento",
+      "Tratamiento completo incluido",
+      "Seguimiento personalizado"
+    ],
+    "icon": "Gift",
+    "durationMin": 120,
+    "priceEUR": 149,
+    "image": "images/placeholder/servicio-4.jpg",
+    "imageAlt": "Paquete Completo - Tu Negocio Aquí"
+  },
+  {
+    "id": "consulta-inicial",
+    "categoryId": "consultation",
+    "title": "Consulta Inicial Gratuita",
+    "description": "Primera consulta sin compromiso. Evaluamos tus necesidades y diseñamos un plan personalizado adaptado a ti.",
+    "benefits": [
+      "100% gratuita",
+      "Evaluación profesional completa",
+      "Plan personalizado incluido"
+    ],
+    "icon": "MessageCircle",
+    "durationMin": 20,
+    "priceEUR": 0,
+    "image": "images/placeholder/servicio-5.jpg",
+    "imageAlt": "Consulta Inicial - Tu Negocio Aquí"
+  },
+  {
+    "id": "mantenimiento-mensual",
+    "categoryId": "maintenance",
+    "title": "Mantenimiento Mensual",
+    "description": "Servicio de mantenimiento periódico para clientes regulares. Mantén tus resultados con sesiones programadas mensuales.",
+    "benefits": [
+      "Precio especial para clientes recurrentes",
+      "Prioridad en agenda",
+      "Acumulación de puntos de fidelidad"
+    ],
+    "icon": "RefreshCw",
+    "durationMin": 45,
+    "priceEUR": 45,
+    "image": "images/placeholder/servicio-6.jpg",
+    "imageAlt": "Mantenimiento Mensual - Tu Negocio Aquí"
+  }
+]
