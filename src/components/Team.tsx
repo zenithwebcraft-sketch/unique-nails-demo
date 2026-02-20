@@ -31,6 +31,10 @@ export const Team = () => {
                   src={member.image}
                   alt={member.name}
                   className="object-cover w-full h-full"
+                  onError={(e) => {
+                    // Si la foto falla, carga el placeholder automáticamente
+                    (e.target as HTMLImageElement).src = "images/micasa/staff-placeholder.svg";
+                  }}
                 />
               </div>
               <CardContent className="p-6 text-center">
