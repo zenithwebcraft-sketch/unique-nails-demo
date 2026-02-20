@@ -1,100 +1,102 @@
-import { google } from 'googleapis';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-const calendar = google.calendar('v3');
-
-// Inicializar cliente de Google Calendar
-const getCalendarClient = () => {
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
-  
-  if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL) {
-    throw new Error('GOOGLE_SERVICE_ACCOUNT_EMAIL not configured');
-  }
-  
-  if (!privateKey) {
-    throw new Error('GOOGLE_PRIVATE_KEY not configured');
-  }
-
-  const auth = new google.auth.JWT({
-    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    key: privateKey,
-    scopes: ['https://www.googleapis.com/auth/calendar'],
-  });
-
-  return { calendar, auth };
-};
+import { google } from 'googleapis';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
+  if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const { date, duration = '60' } = req.query;
+
+  if (!date || typeof date !== 'string') {
+    return res.status(400).json({ error: 'Date is required' });
+  }
+
+  // ── Verificar variables de entorno ──────────────────────────
+  const clientId     = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
+  const calendarId   = process.env.GOOGLE_CALENDAR_ID || 'primary';
+
+  if (!clientId || !clientSecret || !refreshToken) {
+    console.error('Missing OAuth2 credentials:', { clientId: !!clientId, clientSecret: !!clientSecret, refreshToken: !!refreshToken });
+    return res.status(500).json({
+      error: 'Server configuration error',
+      message: 'Missing Google OAuth2 credentials',
+    });
+  }
+
   try {
-    const { date, serviceId } = req.query;
+    // ── OAuth2 Client ────────────────────────────────────────
+    const oauth2Client = new google.auth.OAuth2(
+      clientId,
+      clientSecret,
+      'http://localhost:8080/auth/google/callback'
+    );
 
-    console.log('📅 Availability request:', { date, serviceId });
+    oauth2Client.setCredentials({ refresh_token: refreshToken });
 
-    if (!date || typeof date !== 'string') {
-      return res.status(400).json({ error: 'Date parameter is required' });
+    const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+
+    // ── Rango del día (Eastern Time / Florida) ───────────────
+    const OPEN_HOUR  = 9;
+    const CLOSE_HOUR = 17;
+    const SLOT_INTERVAL  = 30;
+    const serviceDuration = parseInt(duration as string) || 60;
+
+    const startOfDay = new Date(`${date}T09:00:00-05:00`);
+    const endOfDay   = new Date(`${date}T17:00:00-05:00`);
+
+    // ── Obtener eventos de Google Calendar ───────────────────
+    const eventsResponse = await calendar.events.list({
+      calendarId,
+      timeMin: startOfDay.toISOString(),
+      timeMax: endOfDay.toISOString(),
+      singleEvents: true,
+      orderBy: 'startTime',
+    });
+
+    const existingEvents = eventsResponse.data.items || [];
+    const now = new Date();
+    const slots = [];
+    let current = new Date(startOfDay);
+
+    while (current < endOfDay) {
+      const slotEnd = new Date(current.getTime() + serviceDuration * 60000);
+      if (slotEnd > endOfDay) break;
+
+      const isOccupied = existingEvents.some((event) => {
+        const eventStart = new Date(event.start?.dateTime || event.start?.date || '');
+        const eventEnd   = new Date(event.end?.dateTime   || event.end?.date   || '');
+        return current < eventEnd && slotEnd > eventStart;
+      });
+
+      const isPast = current < now;
+
+      // Formato HH:MM (ej: "09:00")
+      const hours   = current.getUTCHours().toString().padStart(2, '0');
+      const minutes = current.getUTCMinutes().toString().padStart(2, '0');
+
+      slots.push({
+        time: `${hours}:${minutes}`,
+        available: !isOccupied && !isPast,
+      });
+
+      current = new Date(current.getTime() + SLOT_INTERVAL * 60000);
     }
 
-    // Construir rango de tiempo (todo el día seleccionado)
-    const timeMin = new Date(`${date}T00:00:00+01:00`).toISOString();
-    const timeMax = new Date(`${date}T23:59:59+01:00`).toISOString();
+    console.log(`✅ Slots generated for ${date}:`, slots.length);
+    return res.status(200).json({ slots, date });
 
-    console.log('🔍 Fetching availability from Google Calendar...');
-    console.log('Calendar ID:', process.env.GOOGLE_CALENDAR_POOL_ID);
-
-    const { auth } = getCalendarClient();
-
-    // Obtener slots ocupados usando freebusy
-    const freeBusyResponse = await calendar.freebusy.query({
-      auth,
-      requestBody: {
-        timeMin,
-        timeMax,
-        items: [{ id: process.env.GOOGLE_CALENDAR_POOL_ID?.trim() }],
-      },
-    });
-
-    const busySlots = freeBusyResponse.data.calendars?.[process.env.GOOGLE_CALENDAR_POOL_ID?.trim()!]?.busy || [];
-
-    console.log('✅ Busy slots found:', busySlots.length);
-
-    return res.status(200).json({
-      success: true,
-      data: {
-        date,
-        busyTimes: busySlots.map((slot) => ({
-          start: slot.start,
-          end: slot.end,
-        })),
-      },
-    });
   } catch (error: any) {
-    console.error('❌ Error fetching availability:', error);
-    console.error('Error details:', {
-      message: error.message,
-      code: error.code,
-      errors: error.errors,
-    });
-    
+    console.error('❌ Availability error:', error.message);
     return res.status(500).json({
-      success: false,
-      error: {
-        code: 'AVAILABILITY_ERROR',
-        message: error.message || 'Failed to fetch availability',
-        details: process.env.NODE_ENV === 'development' ? error.stack : undefined,
-      },
+      error: 'Error loading availability',
+      message: error.message,
     });
   }
 }
