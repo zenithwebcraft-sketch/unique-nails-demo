@@ -98,7 +98,19 @@ export const Footer = () => {
           <p className="text-background/60 text-sm">
             © {new Date().getFullYear()} {business.name}. {t.footer.rights}
           </p>
+          <p className="text-background/40 text-xs mt-2">
+            Made with ❤️ by{" "}
+            <a
+              href="https://www.zenithwebcraft.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-background/70 transition-colors underline underline-offset-2"
+            >
+              ZenithWebCraft
+            </a>
+          </p>
         </div>
+
       </div>
     </footer>
   );
