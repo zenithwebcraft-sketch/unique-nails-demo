@@ -25,8 +25,9 @@ interface BookingConfirmationProps {
 
 export const BookingConfirmation = ({ bookingData, onBookAnother }: BookingConfirmationProps) => {
   const { translations, language } = useLanguage();
-  const bookingId = `VNY-${Date.now().toString().slice(-8)}`;
+  const bookingId = `MCM-${Date.now().toString().slice(-8)}`; // ← MCM en vez de VNY
   const locale = language === 'es' ? es : enUS;
+  const location = businessData.business.locations[0];
 
   return (
     <div className="max-w-3xl mx-auto space-y-8">
@@ -52,61 +53,64 @@ export const BookingConfirmation = ({ bookingData, onBookAnother }: BookingConfi
       {/* Booking Details */}
       <Card>
         <CardContent className="p-6 space-y-6">
+
           {/* Service */}
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center">
-              <Clock className="h-6 w-6 text-pink-600" />
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <Clock className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-gray-900 mb-1">
                 {translations.booking.confirmationPage.service}
               </h3>
               <p className="text-lg font-medium text-gray-900">{bookingData.service.title}</p>
+              {/* ✅ $ en lugar de € */}
               <p className="text-sm text-gray-600">
-                {bookingData.service.durationMin} {translations.booking.minutes} • {bookingData.service.priceEUR}€
+                {bookingData.service.durationMin} {translations.booking.minutes} • ${bookingData.service.priceEUR}
               </p>
             </div>
           </div>
 
           {/* Date & Time */}
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-              <Calendar className="h-6 w-6 text-blue-600" />
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <Calendar className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-gray-900 mb-1">
                 {translations.booking.confirmationPage.dateTime}
               </h3>
               <p className="text-lg font-medium text-gray-900">
-                {format(new Date(bookingData.date), "EEEE, d 'de' MMMM 'de' yyyy", { locale })}
+                {format(new Date(bookingData.date), "EEEE, MMMM d, yyyy", { locale })}
               </p>
               <p className="text-sm text-gray-600">{bookingData.time}</p>
             </div>
           </div>
 
-          {/* Location */}
+          {/* Location — ✅ Desde business.json */}
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
-              <MapPin className="h-6 w-6 text-purple-600" />
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <MapPin className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-gray-900 mb-1">
                 {translations.booking.confirmationPage.location}
               </h3>
               <p className="text-gray-900">
-                {businessData.business.name} - {businessData.business.locations[0].name}
+                {businessData.business.name} — {location.name}
               </p>
+              {/* ✅ Dirección de business.json, no hardcodeada */}
               <p className="text-sm text-gray-600">
-                Calle Olof Palme, esquina, Pl. Musico Diaz Cano, 8<br />
-                30009 Murcia, Spain
+                {location.address}<br />
+                {location.city}
               </p>
             </div>
           </div>
 
-          {/* Stylist */}
+          {/* Consultant — ✅ No más "Stylist" */}
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
-              <User className="h-6 w-6 text-orange-600" />
+            <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <User className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-gray-900 mb-1">
@@ -146,11 +150,11 @@ export const BookingConfirmation = ({ bookingData, onBookAnother }: BookingConfi
             </div>
           </div>
 
-          {/* Payment Info */}
+          {/* Payment Info — ✅ $0 en lugar de 0€ */}
           <div className="border-t pt-6">
-            <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+            <div className="bg-primary/5 rounded-lg p-4 space-y-2">
               <p className="text-sm font-medium text-gray-900">
-                💳 {translations.booking.confirmationPage.chargedToday}: 0€
+                💳 {translations.booking.confirmationPage.chargedToday}: $0
               </p>
               <p className="text-sm text-gray-600">
                 {translations.booking.confirmationPage.paymentNote}
