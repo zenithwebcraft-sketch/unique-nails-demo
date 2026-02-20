@@ -18,7 +18,8 @@
         "name": "Sanford Office",
         "address": "204 N Park Ave, Suites 100-102",
         "city": "Sanford, FL 32771",
-        "mapUrl": "https://maps.google.com/?q=204+N+Park+Ave+Sanford+FL+32771"
+        "mapUrl": "https://maps.google.com/?q=204+N+Park+Ave+Sanford+FL+32771",
+        "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3495.877010357391!2d-81.2709655245245!3d28.812738775566764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e715b4536443cd%3A0xdcb9489871777b03!2sMiCasa%20MultiService%2C%20LLC!5e0!3m2!1sen!2sus!4v1771617707075!5m2!1sen!2sus"
       }
     ],
     "navigation": [
