@@ -1,6 +1,7 @@
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
+// ========== TYPES ==========
 export interface CreateBookingParams {
   serviceId: string;
   serviceTitle: string;
@@ -20,6 +21,38 @@ export interface BookingResponse {
   error?: { message: string };
 }
 
+export interface AvailabilitySlot {
+  time: string;
+  available: boolean;
+}
+
+export interface AvailabilityResponse {
+  slots: AvailabilitySlot[];
+  date: string;
+}
+
+// ========== FETCH AVAILABILITY ==========
+export async function fetchAvailability(
+  date: string,
+  serviceId: string,
+  duration: number
+): Promise<AvailabilityResponse> {
+  try {
+    const params = new URLSearchParams({ date, serviceId, duration: String(duration) });
+    const response = await fetch(`/api/booking/availability?${params}`);
+
+    if (!response.ok) {
+      throw new Error('Error fetching availability');
+    }
+
+    return await response.json();
+  } catch (error: any) {
+    console.error('Error fetching availability:', error);
+    throw error;
+  }
+}
+
+// ========== CREATE BOOKING ==========
 export async function createBooking(params: CreateBookingParams): Promise<BookingResponse> {
   try {
     // 1. Guardar en Firestore
