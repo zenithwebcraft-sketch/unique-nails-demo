@@ -8,55 +8,54 @@
 
 @layer base {
   :root {
-    /* Clean white background for professional service */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 15%;
+  /* Fondo crema suave */
+  --background: 40 38% 97%;          /* ≈ #FAF7F2 */
+  --foreground: 0 0% 16%;            /* ≈ #292929 */
 
-    /* Cards with subtle neutral tone */
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 16%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 16%;
 
-    /* ⬇️ TURQUOISE PRIMARY - MiCasa Brand Color #1BBED7 */
-    --primary: 187 78% 48%;
-    --primary-foreground: 0 0% 100%;
+  /* ⬇️ DORADO PRIMARY - Unique Nails #C9973F */
+  --primary: 38 56% 51%;             /* ≈ #C9973F */
+  --primary-foreground: 0 0% 100%;
 
-    /* Secondary turquoise (darker) */
-    --secondary: 187 68% 38%;
-    --secondary-foreground: 0 0% 100%;
+  /* Secondary un poco más oscuro que el dorado principal */
+  --secondary: 38 56% 40%;           /* dorado más profundo */
+  --secondary-foreground: 0 0% 100%;
 
-    /* Muted neutral tones */
-    --muted: 210 20% 96%;
-    --muted-foreground: 0 0% 45%;
+  /* Muted neutral ligeramente más oscuro que el fondo */
+  --muted: 35 30% 94%;               /* crema suave para secciones */
+  --muted-foreground: 0 0% 35%;
 
-    /* Accent turquoise (lighter) */
-    --accent: 270 100% 92%;
-    --accent-foreground: 270 50% 30%;
+  /* Accent rosado suave para detalles */
+  --accent: 18 43% 90%;              /* ≈ #F2DDD5 */
+  --accent-foreground: 0 0% 30%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
 
-    /* Soft neutral borders */
-    --border: 214 15% 91%;
-    --input: 214 15% 91%;
-    --ring: 187 78% 48%; /* Turquoise focus ring */
+  /* Bordes muy suaves */
+  --border: 35 20% 90%;
+  --input: 35 20% 90%;
+  --ring: 38 56% 51%;                /* dorado como focus ring */
 
-    --radius: 0.5rem;
+  --radius: 0.5rem;
 
-    /* Custom tokens (preserved for compatibility) */
-    --taupe: 30 35% 64%;
-    --taupe-light: 30 30% 85%;
-    --taupe-dark: 30 35% 45%;
-    --cream: 40 30% 96%;
-    --charcoal: 0 0% 20%;
+  /* Tokens personalizados alineados a la nueva marca */
+  --taupe: 30 25% 70%;
+  --taupe-light: 35 30% 94%;         /* similar a muted */
+  --taupe-dark: 30 25% 50%;
+  --cream: 40 38% 97%;               /* igual que background */
+  --charcoal: 0 0% 16%;              /* igual que foreground */
 
-    /* ⬇️ COLOR LILA SUAVE PARA BOOKING */
-    --booking-accent: 270 100% 92%; /* #e6d7ff en HSL */
-    --booking-accent-dark: 270 80% 85%; /* Lila un poco más oscuro para hover */
-    
-  }
+  /* Booking accent puedes dejarlo igual o bajarle un poco la saturación */
+  --booking-accent: 270 40% 90%;
+  --booking-accent-dark: 270 40% 82%;
+}
+
 
   .dark {
     --background: 0 0% 10%;
