@@ -1,43 +1,61 @@
 {
   "staff": [
     {
-      "id": "irma-rivera",
-      "name": "Irma Rivera",
-      "role": "Founder & Director",
-      "bio": "Founder of MiCasa MultiService with over 10 years of experience helping individuals and businesses with their tax and administrative needs. Recognized for her professionalism, deep knowledge, and personalized attention.",
-      "image": "images/micasa/irma-rivera.jpg",
+      "id": "kristine",
+      "name": "Kristine",
+      "role": "Nail Technician & Client Experience",
+      "bio": "Known for making every client feel welcomed and appreciated. Kristine delivers flawless pedicures and nail sets with a warm, personal touch.",
+      "image": "images/placeholder/staff.png",
       "specialties": [
-        "Tax Preparation",
-        "ITIN Services",
-        "Business Consulting"
+        "Pedicures",
+        "Sculpted nails",
+        "Nail art",
+        "Client care"
       ],
       "active": true,
       "bookable": true
     },
     {
-      "id": "elsy",
-      "name": "Elsy",
-      "role": "Administrative Services Specialist",
-      "bio": "Key member of the MiCasa MultiService team, dedicated to providing quality administrative services and exceptional attention to each client.",
-      "image": "images/micasa/staff-placeholder.svg",
+      "id": "alan",
+      "name": "Alan",
+      "role": "Nail Art Specialist",
+      "bio": "Talented nail artist specializing in dip manicures, acrylics, and custom designs. Alan is gentle, thorough, and listens carefully to each design idea.",
+      "image": "images/placeholder/staff.png",
       "specialties": [
-        "Notary Services",
-        "Administrative Assistance",
-        "Customer Service"
+        "Dip powder manicures",
+        "Acrylic nails",
+        "Custom nail art",
+        "Gel manicures"
       ],
       "active": true,
       "bookable": true
     },
     {
-      "id": "carmen-cecilia",
-      "name": "Carmen Cecilia",
-      "role": "Client Services Specialist",
-      "bio": "Professional dedicated to providing comprehensive support and efficient solutions for our clients' administrative and financial needs.",
-      "image": "images/micasa/carmen-cecilia.jpg",
+      "id": "dan",
+      "name": "Dan",
+      "role": "Acrylic & Shaping Expert",
+      "bio": "Praised for smooth, symmetrical nails every time. Dan's precise technique is trusted by brides, nail enthusiasts, and first‑time clients alike.",
+      "image": "images/placeholder/staff.png",
       "specialties": [
-        "Bookkeeping",
-        "Payroll Services",
-        "Administrative Support"
+        "Acrylic full sets",
+        "Nail shaping",
+        "Manicures",
+        "Nail painting"
+      ],
+      "active": true,
+      "bookable": true
+    },
+    {
+      "id": "christine",
+      "name": "Christine",
+      "role": "Spa & Massage Specialist",
+      "bio": "Christine’s pedicures and foot massages are client favorites. She combines expert nail care with a spa‑like, relaxing experience.",
+      "image": "images/placeholder/staff.png",
+      "specialties": [
+        "Foot massages",
+        "Pedicures",
+        "Manicures",
+        "Relaxation treatments"
       ],
       "active": true,
       "bookable": true

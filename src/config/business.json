@@ -1,33 +1,33 @@
 {
   "business": {
-    "name": "MiCasa MultiService, LLC",
-    "description": "Professional services for taxes, bookkeeping, notary, and more. Your trusted partner for all your business and personal administrative needs.",
+    "name": "Unique Nails",
+    "description": "Nail art, pedicures, waxing & lashes — crafted with care in Oviedo, FL.",
     "contact": {
-      "phone": "+1 (757) 773-9271",
-      "email": "info@micasaworks4u.com",
-      "whatsapp": "https://wa.me/17577739271"
+      "phone": "+1 (407) 977-9855",
+      "email": "info@uniquenailsoviedo.com",
+      "whatsapp": "https://wa.me/14079779855"
     },
     "hours": {
-      "weekdays": "Mon - Fri: 9:00 AM - 5:00 PM",
-      "weekend": "Sat - Sun: Closed",
-      "sunday": "Closed"
+      "weekdays": "Tue – Sat: 9:30 AM – 7:00 PM",
+      "weekend": "Sun: 11:00 AM – 5:00 PM",
+      "sunday": "Monday: Closed"
     },
     "locations": [
       {
-        "id": "sanford-main",
-        "name": "Sanford Office",
-        "address": "204 N Park Ave, Suites 100-102",
-        "city": "Sanford, FL 32771",
-        "mapUrl": "https://maps.google.com/?q=204+N+Park+Ave+Sanford+FL+32771",
-        "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3495.877010357391!2d-81.2709655245245!3d28.812738775566764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e715b4536443cd%3A0xdcb9489871777b03!2sMiCasa%20MultiService%2C%20LLC!5e0!3m2!1sen!2sus!4v1771617707075!5m2!1sen!2sus"
+        "id": "oviedo-main",
+        "name": "Unique Nails – Alafaya Square",
+        "address": "49 Alafaya Woods Blvd",
+        "city": "Oviedo, FL 32765",
+        "mapUrl": "https://maps.google.com/?q=49+Alafaya+Woods+Blvd+Oviedo+FL+32765",
+        "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3478.930356084809!2d-81.1979483!3d28.6558218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e768d6c07e8a4b%3A0x0000000000000000!2s49%20Alafaya%20Woods%20Blvd%2C%20Oviedo%2C%20FL%2032765!5e0!3m2!1sen!2sus!4v1739999999999!5m2!1sen!2sus"
       }
     ],
     "navigation": [
-      { "label": "Services", "href": "#servicios" },
-      { "label": "Pricing", "href": "#precios" },
-      { "label": "Our Team", "href": "#equipo" },
-      { "label": "Reviews", "href": "#opiniones" },
-      { "label": "Location", "href": "#ubicacion" }
+      { "label": "Services", "href": "#services" },
+      { "label": "Team", "href": "#team" },
+      { "label": "Reviews", "href": "#reviews" },
+      { "label": "Hours", "href": "#hours" },
+      { "label": "Location", "href": "#location" }
     ],
     "bookingUrl": "/booking"
   }

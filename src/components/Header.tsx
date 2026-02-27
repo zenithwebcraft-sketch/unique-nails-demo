@@ -11,11 +11,10 @@ export const Header = () => {
   const { translations: t } = useLanguage();
 
   const navigationItems = [
-    { label: t.navigation.services, href: "#servicios" },
-    { label: t.navigation.pricing, href: "#precios" },
-    { label: t.navigation.team, href: "#equipo" },
-    { label: t.navigation.testimonials, href: "#opiniones" },
-    { label: t.navigation.location, href: "#ubicacion" },
+    { label: t.navigation.services, href: "#services" },
+    { label: t.navigation.team, href: "#team" },
+    { label: t.navigation.testimonials, href: "#testimonials" },
+    { label: t.navigation.location, href: "#location" },
   ];
 
   return (

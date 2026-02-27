@@ -19,7 +19,7 @@ export const Location = () => {
   const { translations: t } = useLanguage();
 
   return (
-    <section id="ubicacion" className="py-24 bg-background">
+    <section id="location" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Section header */}
         <div className="text-center mb-16">

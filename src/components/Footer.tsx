@@ -9,7 +9,6 @@ export const Footer = () => {
   
   const navigationItems = [
     { label: t.navigation.services, href: "#servicios" },
-    { label: t.navigation.pricing, href: "#precios" },
     { label: t.navigation.team, href: "#equipo" },
     { label: t.navigation.testimonials, href: "#opiniones" },
     { label: t.navigation.location, href: "#ubicacion" },
