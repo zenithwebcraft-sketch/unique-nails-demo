@@ -15,7 +15,7 @@ export const Hero = () => {
           className="w-full h-full object-cover object-center"
         />
         {/* Overlay oscuro en mobile para que el texto sea legible */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/80 to-background/40 lg:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/70 to-background/30 lg:hidden" />
         {/* Overlay lateral en desktop */}
         <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent" />
       </div>
